@@ -1,0 +1,28 @@
+.box_l_3{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.box_l_1{
+    width: 400px;
+    height: 400px;
+    
+
+    
+    
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 15px 15px 15px;
+    text-align: center;
+}
+.box_l_2{
+    margin-top: 20px;
+    button{
+        color: white;
+        background: black;
+        border-radius: 10px;
+    }
+}
+a{
+    color: red;
+}

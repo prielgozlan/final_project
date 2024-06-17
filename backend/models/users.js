@@ -15,7 +15,9 @@ const userSchema = new mongoose.Schema({
     pass:String,
  
   });
+  
   exports.UserModel = mongoose.model("users",userSchema);
+  
   exports.gettoken=(_userid)=>{
     let token = jwt.sign({id:_userid},"yeudayakter",{expiresIn:"60mins"});
     return token

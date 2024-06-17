@@ -21,6 +21,7 @@ router.get("/:id",async (req,res) => {
             res.status(500).json({ message: err.message });}
 });
 router.post("/",async (req,res) => {
+  
 //מתודה שבודקת האם התוקן תקין 
     // let decodedToken = jwt.verify() 
     let validBody = validUser(req.body);

@@ -12,4 +12,3 @@ const postSchema = new mongoose.Schema({
  
   });
   exports.PostModel = mongoose.model("posts",postSchema);
-  

@@ -5,9 +5,7 @@ const jwt = require("jsonwebtoken")
 const userSchema = new mongoose.Schema({
     name:String,
     avatar:String,
-    createdAt:{
-      type:Date, default:Date.now()
-    },
+    createdAt:{type:Date, default:Date.now() },
     username:String,
     friends:Array,
     my_posts:Array,

@@ -8,13 +8,13 @@ import Profile1 from './comp/profile1'
 import Feed from './comp/Feed'
 import LogIn from './comp/LogIn'
 import LogUp from './comp/LogUp'
-import { BrowserRouter as Router , Routes ,Route  } from 'react-router-dom'
+import { BrowserRouter as Router , Routes ,Route } from 'react-router-dom'
 
 
 
 function App() {
   
-
+ 
   return (
     <div>
 

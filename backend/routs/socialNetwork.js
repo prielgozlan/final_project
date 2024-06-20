@@ -4,22 +4,10 @@ const router = express.Router();
 const {UserModel ,validUser ,validLogin, gettoken} = require("../models/users.js");
 const { authToken } = require("../auth/authToken.js");
 
-// router.get("/", async (req, res) => {
-//     let data = await UserModel.find({});
-//     res.json(data)
-
-// })
 
 
-router.get("/id/:id",async (req,res) => {
-    try{			
-        let _id = req.params.id;		
-        let idb =await UserModel.findOne({ _id });;			
-        res.json(idb.name)	}
-        catch(err) {
-            res.status(500).json({ message: err.message });}
-});
-router.post("/",async (req,res) => {
+
+router.post("/logup",async (req,res) => {
   
 //מתודה שבודקת האם התוקן תקין 
     // let decodedToken = jwt.verify() 
@@ -33,7 +21,8 @@ router.post("/",async (req,res) => {
         user.pass = await bcrypt.hash(user.pass, 10);
         await user.save();
         // user.pass = "*****";
-        res.json(user);
+        let newtoken = gettoken(user._id);
+        res.json({token:newtoken});;
       }
       catch (err) {
         console.log(err);

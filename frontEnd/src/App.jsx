@@ -30,7 +30,7 @@ function App() {
           <Route path='/feed' element={<Feed />} />
           <Route path='/Profile' element={<Profile1 />} />
           <Route path='/login' element={<LogIn props={props} />}  />
-          <Route path='/logup' element={<LogUp />} />
+          <Route path='/logup' element={<LogUp props={props}/>} />
           {/* </Route> */}
         </Routes>
       </Router>

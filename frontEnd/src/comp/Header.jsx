@@ -8,6 +8,7 @@ import { Outlet, Link } from 'react-router-dom'
 
 const Header = () => {
   return (
+    <>
     <div className='container box_b'>
       <div className='row'>
         <div className='col-3'>
@@ -32,8 +33,9 @@ const Header = () => {
 
         </div>
       </div>
-      <Outlet />
     </div>
+      <Outlet/>
+    </>
 
   )
 }

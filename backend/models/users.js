@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
   }
   exports.validLogin = (_bodyData) => {
     let joiSchema = Joi.object({
-      email:Joi.string().min(2).max(300).required().email(),
+      name:Joi.string().min(2).max(300).required(),
       pass:Joi.string().min(3).max(100).required(),
     })
   

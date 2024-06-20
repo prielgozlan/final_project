@@ -6,7 +6,17 @@ import { FaUserFriends } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
 import { Outlet, Link } from 'react-router-dom'
 
-const Header = () => {
+const Header = ({props}) => {
+
+  const removeLocal = () =>{
+    
+    localStorage.removeItem('token')
+    props.setIsAuthenticated(false)
+    alert("התנתקות הצליחה")
+    
+    
+  }
+
   return (
     <>
     <div className='container box_b'>
@@ -26,12 +36,19 @@ const Header = () => {
 
 
         </div>
-        <div className='col-4 box'>
+        <div className='col-4 box row'>
+          <div className='col-6'>
           <input type="text" placeholder="Search" />
-
-          <Link to="login" className='box2'><IoMdLogIn /></Link>
-
+          </div>
+          <div className='col-6 box3'>
+            
+            {!props.isAuthenticated?  
+              (<Link to="login" ><button>התחברות</button></Link>) :
+              (<button onClick={removeLocal}>התנתקות</button>)
+            }
+          </div>
         </div>
+        
       </div>
     </div>
       <Outlet/>

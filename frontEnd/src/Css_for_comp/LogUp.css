@@ -5,7 +5,7 @@
 }
 .box_lu_1{
     width: 400px;
-    height: 400px;
+    min-height: 400px;
     border: 2px solid black;
     border-radius: 10px;
     box-shadow: 15px 15px 15px;
@@ -18,5 +18,7 @@
         color: white;
         background: black;
         border-radius: 10px;
+        margin-bottom: 15px;
+        
     }
 }

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import '../Css_for_comp/LogIn.css'
-import { Link } from 'react-router-dom'
-const LogIn = (props) => {
-  const [username, setUsername] = useState("")
+import { Link, useNavigate } from 'react-router-dom'
+const LogIn = ({props}) => {
+  const navigate = useNavigate()
+  const [name, setName] = useState("")
   const [password, setPassword] = useState("")
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -10,8 +11,8 @@ const LogIn = (props) => {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      username,
-      password
+      name,
+      pass: password
     });
 
     const requestOptions = {
@@ -20,15 +21,16 @@ const LogIn = (props) => {
       body: raw
     };
 
-    const res = await fetch("http://localhost:3000/api/auth/login", requestOptions)
+    const res = await fetch("http://localhost:3000/users/login", requestOptions)
     const data = await res.json()
-    .then((data) => {
-      console.log(data);
-      localStorage.setItem("token", data.token)});
-    
-
-
-
+    console.log(data);
+    if (data.token){
+      localStorage.setItem("token", data.token)
+      console.log(props.setIsAuthenticated)
+      props.setIsAuthenticated(true)
+      navigate("/")
+    }
+    else(alert("שם או סיסמא לא נכונים כתוב שוב בבקשה"))
   }
   return (
     <div className='box_l_3'>
@@ -39,8 +41,8 @@ const LogIn = (props) => {
             <input
               type="text"
               placeholder="שם משתמש"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className='box_l_2'>

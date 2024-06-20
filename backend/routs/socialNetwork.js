@@ -52,12 +52,13 @@ router.post("/login" , async(req,res) => {
       return res.status(400).json(validBody.error.details);
     }
     // נבדוק אם המייל שנשלח בבאדי קיים במסד נתונים
-    let user  = await UserModel.findOne({email:req.body.email});
+    let user  = await UserModel.findOne({name:req.body.name});
     if(!user){
       return res.status(401).json({msg:"User not found"});
     }
     // נבדוק אם הסיסמא שנשלחה מתאימה להצפנה שנמצאת במסד
-    let passValid = await bcrypt.compare(req.body.pass,user.pass);
+    let passValid = req.body.pass === user.pass;
+    // let passValid = await bcrypt.compare(req.body.pass,user.pass);
     if(!passValid){
       return res.status(401).json({msg:"Password worng"});
     }

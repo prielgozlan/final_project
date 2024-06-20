@@ -1,18 +1,17 @@
 const express = require("express");
 const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
-
 const router = express.Router();
-const {UserModel ,validUser ,validLogin, gettoken} = require("../models/users.js")
+const {UserModel ,validUser ,validLogin, gettoken} = require("../models/users.js");
+const { authToken } = require("../auth/authToken.js");
 
-router.get("/", async (req, res) => {
-    let data = await UserModel.find({});
-    res.json(data)
+// router.get("/", async (req, res) => {
+//     let data = await UserModel.find({});
+//     res.json(data)
 
-})
+// })
 
 
-router.get("/:id",async (req,res) => {
+router.get("/id/:id",async (req,res) => {
     try{			
         let _id = req.params.id;		
         let idb =await UserModel.findOne({ _id });;			
@@ -33,7 +32,7 @@ router.post("/",async (req,res) => {
         //TODO: להצפין את הסיסמא
         user.pass = await bcrypt.hash(user.pass, 10);
         await user.save();
-        user.pass = "*****";
+        // user.pass = "*****";
         res.json(user);
       }
       catch (err) {
@@ -42,8 +41,12 @@ router.post("/",async (req,res) => {
       }
   
 });
+
+
+
 router.post("/login" , async(req,res) => {
-    let validBody = validLogin(req.body);
+  
+    let validBody =  validLogin (req.body);
 
     if (validBody.error) {
       return res.status(400).json(validBody.error.details);
@@ -61,6 +64,11 @@ router.post("/login" , async(req,res) => {
     let newtoken = gettoken(user._id);
     res.json({token:newtoken});
     // נחזיר הודעה שהכל בסדר ונייצר טוקן
+  })
+
+  router.get("/",authToken, async(req,res) => {
+    let user = await UserModel.findOne({id:req.tokenData._id},{pass:0});
+  res.json(user)
   })
 
 

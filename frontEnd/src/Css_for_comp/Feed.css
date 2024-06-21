@@ -4,6 +4,9 @@
   border: 2px solid black;
   margin-right: 20px;
   border-radius: 10px;
+
+
+  
 }
 
 .box_f_2{
@@ -11,6 +14,8 @@
     border: 2px solid black;
     border-radius: 10px;
     /* color: red; */
+    
+    
 }
 .box_f1{
     min-height: 100px;
@@ -28,8 +33,25 @@
         border: 2px solid black;
         border-radius: 50%;
         }
+    
+
 }
 .box_f3{
-    a{  
-    color: black;
-}}
+    img{
+        max-width: 300px;
+        min-height: 570px;
+        position: sticky;
+    top: 0;
+    z-index: 8;
+    }}
+.box_f_3{
+    text-align: right;
+    button{
+        color: white;
+        background: black;
+        border-radius: 10px;
+        margin-top: 20px;
+        /* font-size: 20px; */
+        text-align: left;
+    }
+}

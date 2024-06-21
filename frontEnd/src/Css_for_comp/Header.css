@@ -1,12 +1,18 @@
-.box_b{
-    max-height: 150px;
+.box_body{
+    /* background: rgb(122, 215, 244); */
     position: sticky;
     top: 0;
     z-index: 9;
+}
+.box_b{
+    max-height: 150px;
+    
+    
 
     img{
         max-height: 120px;
     }
+    
 }
 .box{
     margin-right: 5px;

@@ -1,7 +1,11 @@
 import React from 'react'
 import '../Css_for_comp/Feed.css'
+import TableFeed from './TableFeed'
+import { FaPlus } from "react-icons/fa";
+
 const Feed = () => {
-return (
+  return (
+    
     <div className='container'>
       <div className='row'>
         <div className='col-3 box_f_1'>
@@ -30,10 +34,20 @@ return (
 
         </div>
         <div className='col-6 box_f_2'>
-          bbdfjfjkd
+
+          <div className='box_f_3'>
+            <button><FaPlus /> פוסט חדש</button>
+          </div>
+
+          <div>
+            <TableFeed />
+          </div>
+
         </div>
-        <div className='col-2 box_f_3'>
-          bvkjxjk.cxvbjkvcx
+
+        <div className='col-2 box_f3'>
+        <img src='mego.jpg'/>
+
         </div>
 
       </div>

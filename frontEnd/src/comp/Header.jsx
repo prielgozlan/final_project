@@ -19,6 +19,7 @@ const Header = ({props}) => {
 
   return (
     <>
+    <div className='box_body'>
     <div className='container box_b'>
       <div className='row'>
         <div className='col-3'>
@@ -50,6 +51,7 @@ const Header = ({props}) => {
         </div>
         
       </div>
+    </div>
     </div>
       <Outlet/>
     </>

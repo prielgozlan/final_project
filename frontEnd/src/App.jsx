@@ -12,9 +12,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('token')==null)
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('token')!=null)
   const props ={isAuthenticated, setIsAuthenticated}
-
+  
   return (
     <div>
 

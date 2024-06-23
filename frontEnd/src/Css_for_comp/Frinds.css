@@ -1,0 +1,9 @@
+.box_f_b{
+    margin-top: 20px ;
+    height: 150px;
+    border: 2px solid  black;
+    border-radius: 10px;
+}
+.box_f_b_1{
+    padding: 20px;
+}

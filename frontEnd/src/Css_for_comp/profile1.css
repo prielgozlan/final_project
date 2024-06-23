@@ -38,9 +38,11 @@
     text-align: right;
     margin: 40px;
     /* border: 2px solid black; */
-    a{
-        color: black;
-        
+
+    button{
+        color: white;
+        background: black;
+        border-radius: 10px;
     }
 }
 .box_p_6{

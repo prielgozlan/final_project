@@ -66,15 +66,10 @@ const Feed = () => {
         <div className='col-6 box_f_2'>
 
           <div className='box_f_3'>
-            {/* <Link to='../writePost'><button onClick={hendlePost}><FaPlus /> פוסט חדש</button></Link> */}
-
-
             {istoken?
             !Post ? (<WritePost hendlePost2={hendlePost2}/>):
             (<button onClick={hendlePost}><FaPlus /> פוסט חדש</button>):null}
-{/* 
-            {!Post ? (<WritePost hendlePost2={hendlePost2}/>):
-            (<button onClick={hendlePost}><FaPlus /> פוסט חדש</button>)} */}
+
             
           </div>
 

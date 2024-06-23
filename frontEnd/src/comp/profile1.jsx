@@ -6,11 +6,35 @@ import { useState , useEffect } from 'react'
 
 
 import "../Css_for_comp/profile1.css"
+
+import Posts from './Posts';
+import Frinds from './Frinds';
+import Photos from './Photos';
+
 const Profile1 = () => {
 
     const token = localStorage.getItem('token')
-    const [userName,setuserName] = useState("שם משתמש")
-      
+
+    const [userName,setuserName] = useState(false)
+    const [Posts2,setPosts] = useState(false)
+    const [Frinds2,setFrinds] = useState(false)
+    const [Photos2,setPhotos2] = useState(false)
+
+    const posrs1 = ()=>{
+        setPosts(true)
+        setFrinds(false)
+        setPhotos2(false)
+    }
+    const frinds1 = ()=>{
+        setPosts(false)
+        setFrinds(true)
+        setPhotos2(false)
+    }
+    const photos1 = ()=>{
+        setPhotos2(true)
+        setPosts(false)
+        setFrinds(false)
+    }
   
     useEffect(() => {
       if (token) 
@@ -21,6 +45,9 @@ const Profile1 = () => {
   
   
     }, [token]);
+
+
+    
 
 
 
@@ -47,20 +74,22 @@ const Profile1 = () => {
         <div className='row'>
             <div className='col-4'></div>
             <div className='col-1 box_p_5'>
-                <a href='#'>תמונות</a>
+                <button onClick={photos1}>תמונות</button>
             </div>
             <div className='col-1 box_p_5'>
-                <a href='#'>פוסטים</a>
+                <button onClick={posrs1}>פוסטים</button>
             </div>
             <div className='col-1 box_p_5'>
-                <a href='#'>חברים</a>
+                <button onClick={frinds1}>חברים</button>
             </div>
-            {/* <div className='col-1 box_p_5'>
-                <a href='#'>אודות</a>
-            </div> */}
+        
         </div>
         <div className='row'>
             <div className='col-7 box_p_7'>
+                {Posts2 ? <Posts/>:null}
+                {Frinds2 ? <Frinds/>:null}
+                {Photos2 ? <Photos/>:null}
+                
                 
             </div>
             <div className='col-4 box_p_6'>

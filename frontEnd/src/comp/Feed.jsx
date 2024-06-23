@@ -11,6 +11,7 @@ const Feed = () => {
   const [userName,setuserName] = useState("שם משתמש")
   const [Post,setPost] = useState(true)
   const [istoken,setistoken] = useState(token)
+  const setTokem = {istoken,setistoken}
   
   const hendlePost = ()=>{
     setPost(false)
@@ -74,7 +75,7 @@ const Feed = () => {
           </div>
 
           <div>
-            <TableFeed />
+            <TableFeed setTokem={setTokem}/>
           </div>
 
         </div>

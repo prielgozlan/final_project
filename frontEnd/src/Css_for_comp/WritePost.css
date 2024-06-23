@@ -3,12 +3,12 @@
     z-index:1000;
     left: 1000;
     top: 550;
-    background: white;
+    background-color: white;
 }
 .box_w_1{
     display: flex;
     justify-content: center;
-    /* background: gray; */
+
     
 }
 .box_w_2{

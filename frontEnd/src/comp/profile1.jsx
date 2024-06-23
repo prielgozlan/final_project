@@ -1,10 +1,32 @@
 import React from 'react'
 import { FaCamera } from "react-icons/fa";
 import { MdOutlineSettings } from "react-icons/md";
+import {jwtDecode} from 'jwt-decode'
+import { useState , useEffect } from 'react'
 
 
 import "../Css_for_comp/profile1.css"
 const Profile1 = () => {
+
+    const token = localStorage.getItem('token')
+    const [userName,setuserName] = useState("שם משתמש")
+      
+  
+    useEffect(() => {
+      if (token) 
+        {setuserName(jwtDecode(token).user.name)
+        
+        }
+      else{setuserName("שם משתמש")}
+  
+  
+    }, [token]);
+
+
+
+
+
+
   return (
     <div className='container'>
         <div className='box_p_1'>
@@ -16,7 +38,7 @@ const Profile1 = () => {
                 <img src=''/>
             </div>
             <div className='col-3 box_p_3'>
-                <h2>priel gozlan</h2>
+                <h2>{userName}</h2>
             </div>
             <div className='col-7 box_p_4'>
                 <button>עריכת פרופיל <MdOutlineSettings/></button>
@@ -43,10 +65,12 @@ const Profile1 = () => {
             </div>
             <div className='col-4 box_p_6'>
                 <h2>אודות</h2>
-                <p>:שם פרטי</p>
-                <p>:שם משפחה</p>
-                <p>:מצב משפחתי</p>
-                <p>:מקום מגורים</p>
+                <br/>
+                <h5>{userName}</h5>
+                <br/>
+                <h5>:מצב משפחתי</h5>
+                <br/>
+                <h5>:מקום מגורים</h5>
                 
             </div>
 

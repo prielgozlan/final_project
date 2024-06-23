@@ -9,12 +9,17 @@ import Feed from './comp/Feed'
 import LogIn from './comp/LogIn'
 import LogUp from './comp/LogUp'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {jwtDecode} from 'jwt-decode'
+import WritePost from './comp/WritePost'
 
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('token')!=null)
-  const props ={isAuthenticated, setIsAuthenticated}
-  
+  const token = localStorage.getItem('token')
+  const [isAuthenticated, setIsAuthenticated] = useState(token != null)
+
+
+  const props = { isAuthenticated, setIsAuthenticated }
+
   return (
     <div>
 
@@ -23,14 +28,15 @@ function App() {
       {/* <Profile1/> */}
       {/* <Feed/> */}
       <Router>
-        <Header props={props}/>
+        <Header props={props} />
         <Routes>
           {/* <Route path='/' element={<Header/>}> */}
           <Route path='/' element={<Feed />} />
           <Route path='/feed' element={<Feed />} />
           <Route path='/Profile' element={<Profile1 />} />
-          <Route path='/login' element={<LogIn props={props} />}  />
-          <Route path='/logup' element={<LogUp props={props}/>} />
+          <Route path='/login' element={<LogIn props={props} />} />
+          <Route path='/logup' element={<LogUp props={props} />} />
+          <Route path='/writePost' element={<WritePost/>} />
           {/* </Route> */}
         </Routes>
       </Router>

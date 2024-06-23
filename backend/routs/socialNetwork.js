@@ -21,7 +21,8 @@ router.post("/logup",async (req,res) => {
         user.pass = await bcrypt.hash(user.pass, 10);
         await user.save();
         // user.pass = "*****";
-        let newtoken = gettoken(user._id);
+        user.pass=undefined
+        let newtoken = gettoken(user);
         res.json({token:newtoken});;
       }
       catch (err) {
@@ -41,7 +42,7 @@ router.post("/login" , async(req,res) => {
       return res.status(400).json(validBody.error.details);
     }
     // נבדוק אם המייל שנשלח בבאדי קיים במסד נתונים
-    let user  = await UserModel.findOne({name:req.body.name});
+    let user  = await UserModel.findOne({name:req.body.name}).select('+pass');
     if(!user){
       return res.status(401).json({msg:"User not found"});
     }
@@ -51,7 +52,8 @@ router.post("/login" , async(req,res) => {
     if(!passValid){
       return res.status(401).json({msg:"Password worng"});
     }
-    let newtoken = gettoken(user._id);
+    user.pass = undefined;
+    let newtoken = gettoken(user);
     res.json({token:newtoken});
     // נחזיר הודעה שהכל בסדר ונייצר טוקן
   })

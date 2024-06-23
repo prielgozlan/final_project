@@ -13,9 +13,8 @@ const Header = ({props}) => {
     localStorage.removeItem('token')
     props.setIsAuthenticated(false)
     alert("התנתקות הצליחה")
-    
-    
-  }
+}
+
 
   return (
     <>

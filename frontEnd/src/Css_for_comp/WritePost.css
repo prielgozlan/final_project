@@ -1,0 +1,39 @@
+.box_body_w{
+    position: fixed;
+    z-index:1000;
+    left: 1000;
+    top: 550;
+    background: white;
+}
+.box_w_1{
+    display: flex;
+    justify-content: center;
+    /* background: gray; */
+    
+}
+.box_w_2{
+    text-align: center;
+    width: 550px;
+    min-height: 300px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 15px 15px 15px;
+    button{
+        margin-bottom: 20px;
+        color: white;
+        background: black;
+        border-radius: 10px;
+    }
+    
+
+}
+.box_w_3{
+    width: 80%;
+    min-height:200px ;
+    border: 2px solid black;
+    border-radius: 10px;
+    background: white;
+    padding: 10px;
+    
+    
+}

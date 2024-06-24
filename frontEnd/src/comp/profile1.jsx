@@ -43,7 +43,7 @@ const Profile1 = () => {
         }
       else{setuserName("שם משתמש")}
   
-  
+    
     }, [token]);
 
 
@@ -86,10 +86,13 @@ const Profile1 = () => {
         </div>
         <div className='row'>
             <div className='col-7 box_p_7'>
-                {Posts2 ? <Posts/>:null}
-                {Frinds2 ? <Frinds/>:null}
-                {Photos2 ? <Photos/>:null}
+            
+            {token? Posts2 ? <Posts/>:null:null}
+            {token? Frinds2 ? <Frinds/>:null:null}
+            {token? Photos2 ? <Photos/>:null:null}
                 
+                
+            
                 
             </div>
             <div className='col-4 box_p_6'>

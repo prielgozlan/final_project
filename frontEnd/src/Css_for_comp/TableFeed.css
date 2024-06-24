@@ -1,9 +1,10 @@
-/* .box_t_f{ */
-/* min-width: 70%;
-    min-height: 200px; */
-/* } */
+/* .box_t_f{ 
+     min-width: 70%;
+    min-height: 200px; } */
+
+
 .box_t_f_1 {
-    min-width: 70%;
+    min-width: 60%;
     min-height: 200px;
     margin-top: 20px;
     border: 2px solid black;

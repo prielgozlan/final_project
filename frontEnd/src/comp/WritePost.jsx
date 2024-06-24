@@ -10,11 +10,11 @@ const WritePost = ({ hendlePost2 }) => {
 
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
+        myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
 
         const raw = JSON.stringify({
-            text: textPost.current.value,
-            date: Date.now()
+            content: textPost.current.value,
+            
         });
 
         const requestOptions = {

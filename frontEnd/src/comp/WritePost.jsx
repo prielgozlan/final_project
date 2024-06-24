@@ -1,7 +1,9 @@
 import React from 'react'
 import "../Css_for_comp/WritePost.css"
 import { useRef } from 'react';
+import {useNavigate} from 'react-router-dom'
 const WritePost = ({ hendlePost2 }) => {
+const navigate = useNavigate()
     const textPost = useRef()
     const exit =()=>{
         hendlePost2()

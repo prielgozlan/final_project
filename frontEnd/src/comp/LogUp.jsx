@@ -97,6 +97,7 @@ const LogUp = ({ props }) => {
             statusRef.current.value == "זכר" || statusRef.current.value == "נקבה"
         ) 
         {
+            
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
@@ -104,8 +105,8 @@ const LogUp = ({ props }) => {
                 name: nameRef.current.value,
                 email: emailRef.current.value,
                 pass: passwordRef.current.value,
-                city: cityRef.current.value,
-                status: statusRef.current.value,
+                address: cityRef.current.value,
+                Marital_Status: statusRef.current.value,
                 
                 
             });
@@ -120,11 +121,13 @@ const LogUp = ({ props }) => {
             try {
                 const res = await fetch(
                     "http://localhost:3000/users/logup",
-                    requestOptions
+                    requestOptions,
+                    
                 );
                 const data = await res.json();
                 console.log(data);
                 if (data.token) {
+                    console.log(data.token);
                     localStorage.setItem("token", data.token);
                     props.setIsAuthenticated(true)
                     navigate("/");

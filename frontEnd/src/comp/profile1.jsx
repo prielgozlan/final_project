@@ -49,7 +49,9 @@ const Profile1 = () => {
         setuserType(jwtDecode(token).user.Marital_Status)
         
         }
-      else{setuserName("שם משתמש")}
+      else{setuserName("שם משתמש")
+           ,setuserType("סטטוס")
+           setuserCity("שם עיר")}
   
     
     }, [token]);

@@ -26,6 +26,8 @@ router.post("/" , authToken, async(req,res) => {
       let post = new PostModel(req.body);
 
       post.user_id = req.tokenData.user._id;
+      post.name = req.tokenData.user.name;
+      
       console.log(post.user_id)
       await post.save();
       res.status(201).json({post});

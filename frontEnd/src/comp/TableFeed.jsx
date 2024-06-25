@@ -6,6 +6,17 @@ import { FaRegFaceKissWinkHeart } from "react-icons/fa6";
 
 
 const TableFeed = ({setTokem}) => {
+
+    
+
+
+
+
+
+
+
+
+
     return (
         <div className='box_t_f'>
             <div className='box_t_f_1'>

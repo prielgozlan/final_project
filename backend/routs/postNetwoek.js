@@ -12,8 +12,7 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/" , authToken, async(req,res) => {
-    // let valdiateHeader = validPost(req.header);
-    // let valdiateBody = validPost(req.body);
+  
     let valdiateBody = validPost(req.body);
     
 

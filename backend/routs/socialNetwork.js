@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt")
 const router = express.Router();
-const {UserModel ,validUser ,validLogin, gettoken} = require("../models/users.js");
+const {UserModel ,validUser ,validLogin, gettoken, valedconect} = require("../models/users.js");
 const { authToken } = require("../auth/authToken.js");
 
 
@@ -63,5 +63,13 @@ router.post("/login" , async(req,res) => {
   res.json(user)
   })
 
+router.put("/",authToken ,async(req,res)=>{
+  let userIdToAdd = req.body.user_id;
+  let tokenUserId = req.tokenData.user._id;
+  let user = await UserModel.findById(userIdToAdd);
+  user.friends.push(tokenUserId);
+  await user.save();
 
+
+})
 module.exports = router

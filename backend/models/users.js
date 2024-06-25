@@ -4,7 +4,7 @@ const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const userSchema = new mongoose.Schema({
   name: String,
-  createdAt: { type: Date, default: Date.now() },
+  createdAt: { type: Date, default: () => new Date().setHours(0, 0, 0, 0) },
   friends: Array,
   email: String,
   pass: { type: String, select: false },
@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
   address: String,
 
   Marital_Status: String,
-  img:String
+  imguser:String,
+  imgbakrand:String
 });
 
 exports.UserModel = mongoose.model("users", userSchema);
@@ -33,11 +34,10 @@ exports.validUser = (_bodyData) => {
 
   return joiSchema.validate(_bodyData);
 };
-exports.validLogin = (_bodyData) => {
-  let joiSchema = Joi.object({
-    name: Joi.string().min(2).max(300).required(),
-    pass: Joi.string().min(3).max(100).required(),
-  });
+exports.valedconect = (_bodyData)=>{
+  let joiconect = Joi.object({
+    friends: Joi.array(),
+  })
+  return joiconect.valedconect(_bodyData)
+}
 
-  return joiSchema.validate(_bodyData);
-};

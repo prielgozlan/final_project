@@ -34,17 +34,18 @@ router.post("/" , authToken, async(req,res) => {
     }
   })
   
+<<<<<<< HEAD
 
   router.get("/:idget",authToken,async(req,res) => {
+=======
+  router.get("/idget",authToken,async(req,res) => {
+>>>>>>> bab4e606eb9b62d32728a2dbfe27f2388a590859
     try{
-      let idget = req.params.idget
+      let idget = req.tokenData.user._id;
       let data
-      if(req.tokenData.user._id == idget){
-        data = await PostModel.find({user_id:idget});
-      }
-      else{
-        data = await PostModel.find({msg:"err"});
-      }
+      
+    data = await PostModel.find({user_id:idget});
+ 
       res.json(data);
     }
     catch(err){

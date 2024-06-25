@@ -77,4 +77,9 @@ router.post("/addFrind", authToken, async (req, res) => {
     res.json("אתה חבר כבר");
   }
 })
+router.post("/getfraind",authToken,async(req,res)=>{
+  let getfraind = req.tokenData.user;
+  let data = await UserModel.find({_id:getfraind.friends})
+  res.json(data)
+})
 module.exports = router

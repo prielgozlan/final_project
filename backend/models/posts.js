@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
-
+const moment = require('moment');
 const Joi = require("joi");
 
 const postSchema = new mongoose.Schema({
     name:String,
     content:String,
-    createdAt: { type: Date, default: Date.now() },
+    createdAt: { type: String, default: () => moment().format('DD/MM/YYYY') },
     like1:Number,
     like2:Number,
     like3:Number,

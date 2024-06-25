@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-
+const moment = require('moment');
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const userSchema = new mongoose.Schema({
   name: String,
-  createdAt: { type: Date, default: () => new Date().setHours(0, 0, 0, 0) },
+  createdAt: { type: String, default: () => moment().format('DD/MM/YYYY') },
   friends: Array,
   email: String,
   pass: { type: String, select: false },

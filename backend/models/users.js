@@ -34,10 +34,11 @@ exports.validUser = (_bodyData) => {
 
   return joiSchema.validate(_bodyData);
 };
-exports.valedconect = (_bodyData)=>{
-  let joiconect = Joi.object({
-    friends: Joi.array(),
-  })
-  return joiconect.valedconect(_bodyData)
-}
+exports.validLogin = (_bodyData) => {
+  let joiSchema = Joi.object({
+    name: Joi.string().min(2).max(300).required(),
+    pass: Joi.string().min(3).max(100).required(),
+  });
 
+  return joiSchema.validate(_bodyData);
+};

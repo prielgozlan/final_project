@@ -7,6 +7,37 @@ import { FaRegFaceKissWinkHeart } from "react-icons/fa6";
 
 const Posts = ({props}) => {
 
+    const deletePost = async()=>{
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
+    
+        
+    
+        const requestOptions = {
+            method: "DELETE",
+            headers: myHeaders,
+            
+        };
+    
+        try {
+            const res = await fetch(
+                `http://localhost:3000/posts/${props._id}`,
+                requestOptions
+            );
+            const data = await res.json();
+            console.log(data);
+            if (data) {
+                console.log(data);
+                alert(data)
+            
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert(`שגיאה בשליחת הפוסט ${error.message}`);
+        }
+    
+    }
 
 
 
@@ -24,7 +55,7 @@ const Posts = ({props}) => {
                         <p>{props.createdAt}</p>
                     </div>
                     <div className='col-5 box_t_f_b'>
-                        <button>מחיקת פוסט</button>
+                        <button onClick={deletePost}>מחיקת פוסט</button>
                         <button>עריכה פוסט</button>
                     </div>
                 </div>

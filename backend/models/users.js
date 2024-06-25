@@ -8,9 +8,7 @@ const userSchema = new mongoose.Schema({
   friends: Array,
   email: String,
   pass: { type: String, select: false },
-
   address: String,
-
   Marital_Status: String,
   imguser:String,
   imgbakrand:String

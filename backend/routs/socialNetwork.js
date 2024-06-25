@@ -35,9 +35,7 @@ router.post("/logup", async (req, res) => {
 
 
 router.post("/login", async (req, res) => {
-
-  let validBody = validLogin(req.body);
-
+ let validBody = validLogin(req.body);
   if (validBody.error) {
     return res.status(400).json(validBody.error.details);
   }
@@ -68,7 +66,7 @@ router.post("/addFrind", authToken, async (req, res) => {
   let userIdToAdd = req.body.user_id;
   let tokenUserId = req.tokenData.user._id;
   let user = await UserModel.findById(tokenUserId);
-  if (!user.friends.includes(userIdToAdd)) {
+  if (!user.friends.includes(userIdToAdd) && userIdToAdd != tokenUserId) {
     user.friends.push(userIdToAdd);
     await user.save();
     console.log("הצליח");

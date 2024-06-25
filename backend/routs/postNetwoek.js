@@ -14,9 +14,6 @@ router.get("/", async (req, res) => {
 router.post("/" , authToken, async(req,res) => {
   
     let valdiateBody = validPost(req.body);
-    
-
-    
     console.log(valdiateBody);
     if(valdiateBody.error){
       return res.status(400).json(valdiateBody.error.details)
@@ -37,7 +34,8 @@ router.post("/" , authToken, async(req,res) => {
     }
   })
   
-  router.get("/idget",authToken,async(req,res) => {
+
+  router.get("/:idget",authToken,async(req,res) => {
     try{
       let idget = req.tokenData.user._id;
       let data
@@ -51,6 +49,8 @@ router.post("/" , authToken, async(req,res) => {
       res.status(500).json(err)
     }
   })
+  
+
   router.delete("/:idDel",authToken,async(req,res) => {
     try{
       let idDel = req.params.idDel
@@ -66,4 +66,6 @@ router.post("/" , authToken, async(req,res) => {
       res.status(500).json(err)
     }
   })
+
+  
 module.exports = router

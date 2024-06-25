@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 
 const postSchema = new mongoose.Schema({
+    name:String,
     content:String,
     createdAt: { type: Date, default: Date.now() },
     like1:Number,

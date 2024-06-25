@@ -16,6 +16,12 @@ const Profile1 = () => {
     const token = localStorage.getItem('token')
 
     const [userName,setuserName] = useState(false)
+    const [userCity,setuserCity] = useState(false)
+    const [userType,setuserType] = useState(false)
+
+
+
+
     const [Posts2,setPosts] = useState(false)
     const [Frinds2,setFrinds] = useState(false)
     const [Photos2,setPhotos2] = useState(false)
@@ -39,11 +45,15 @@ const Profile1 = () => {
     useEffect(() => {
       if (token) 
         {setuserName(jwtDecode(token).user.name)
+        setuserCity(jwtDecode(token).user.address)
+        setuserType(jwtDecode(token).user.Marital_Status)
         
         }
-      else{setuserName("שם משתמש")}
+      else{setuserName("שם משתמש")
+           ,setuserType("סטטוס")
+           setuserCity("שם עיר")}
   
-  
+    
     }, [token]);
 
 
@@ -86,10 +96,13 @@ const Profile1 = () => {
         </div>
         <div className='row'>
             <div className='col-7 box_p_7'>
-                {Posts2 ? <Posts/>:null}
-                {Frinds2 ? <Frinds/>:null}
-                {Photos2 ? <Photos/>:null}
+            
+            {token? Posts2 ? <Posts/>:null:null}
+            {token? Frinds2 ? <Frinds/>:null:null}
+            {token? Photos2 ? <Photos/>:null:null}
                 
+                
+            
                 
             </div>
             <div className='col-4 box_p_6'>
@@ -97,9 +110,9 @@ const Profile1 = () => {
                 <br/>
                 <h5>{userName}</h5>
                 <br/>
-                <h5>:מצב משפחתי</h5>
+                <h5>{userType}</h5>
                 <br/>
-                <h5>:מקום מגורים</h5>
+                <h5>{userCity}</h5>
                 
             </div>
 

@@ -27,6 +27,8 @@ exports.validUser = (_bodyData) => {
     name: Joi.string().min(2).max(99).required(),
     email: Joi.string().min(2).max(300).required().email(),
     pass: Joi.string().min(3).max(100).required(),
+    address: Joi.string(),
+    Marital_Status: Joi.string()
   });
 
   return joiSchema.validate(_bodyData);

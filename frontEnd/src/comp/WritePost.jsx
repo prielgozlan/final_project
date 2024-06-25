@@ -1,7 +1,9 @@
 import React from 'react'
 import "../Css_for_comp/WritePost.css"
 import { useRef } from 'react';
+import {useNavigate} from 'react-router-dom'
 const WritePost = ({ hendlePost2 }) => {
+const navigate = useNavigate()
     const textPost = useRef()
     const exit =()=>{
         hendlePost2()
@@ -10,11 +12,11 @@ const WritePost = ({ hendlePost2 }) => {
 
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
+        myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
 
         const raw = JSON.stringify({
-            text: textPost.current.value,
-            date: Date.now()
+            content: textPost.current.value,
+            
         });
 
         const requestOptions = {

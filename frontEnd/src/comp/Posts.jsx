@@ -5,7 +5,13 @@ import { FcLike } from "react-icons/fc";
 import { FaRegFaceKissWinkHeart } from "react-icons/fa6";
 
 
-const Posts = () => {
+const Posts = ({props}) => {
+
+
+
+
+
+
   return (
     <div className='box_t_f'>
             <div className='box_t_f_1'>
@@ -14,7 +20,7 @@ const Posts = () => {
                         <img src="" />
                     </div>
                     <div className='col-4 mt-4'>
-                        <h4>priel gozlan</h4>
+                        <h4>{props.name}</h4>
                         <p>20.3.2024</p>
                     </div>
                     <div className='col-5 box_t_f_b'>

@@ -78,8 +78,5 @@ router.post("/addFrind", authToken, async (req, res) => {
     console.log("לא הצליח");
     res.json("אתה חבר כבר");
   }
-  
-  
-  
 })
 module.exports = router

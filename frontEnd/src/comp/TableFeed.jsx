@@ -5,19 +5,11 @@ import { FcLike } from "react-icons/fc";
 import { FaRegFaceKissWinkHeart } from "react-icons/fa6";
 
 
-const TableFeed = ({setTokem}) => {
-
-    
+const TableFeed = ({setTokem , pros}) => {
 
 
 
-
-
-
-
-
-
-    return (
+return (
         <div className='box_t_f'>
             <div className='box_t_f_1'>
                 <div className='row'>
@@ -25,14 +17,14 @@ const TableFeed = ({setTokem}) => {
                         <img src="" />
                     </div>
                     <div className='col-5 mt-4'>
-                        <h4>priel gozlan</h4>
-                        <p>20.3.2024</p>
+                        <h4>{pros.name}</h4>
+                        <p>{pros.createdAt}</p>
                     </div>
                     <div className='col-3 box_t_f_b'>
                     {setTokem.istoken ? <button> הצעת חברות</button>:null}
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis odit cupiditate maxime saepe quos necessitatibus aliquid, voluptates tempore eligendi at ut earum, enim nobis vel. Natus vitae quibusdam nobis aspernatur iste tempore maiores accusamus. Fugit quisquam architecto rem nisi, nemo ipsam sequi voluptate beatae est earum! Atque quis dolorum cum optio ratione error laudantium maxime quaerat culpa iste illo ex quod quidem autem deserunt cumque inventore voluptas eum, veniam totam? Perspiciatis amet vel cum voluptatem labore laudantium quidem et eius aliquam odio? Hic repudiandae quaerat dolor beatae modi consequatur sequi eos ducimus nulla aspernatur perspiciatis unde, amet quidem ullam fugit!</p>
+                <p>{pros.content}</p>
                 <div className='row'>
                 <div className='box_icon col-2'>
                     <button><FcLike/></button>
@@ -49,36 +41,7 @@ const TableFeed = ({setTokem}) => {
                 </div>
 
             </div>
-            <div className='box_t_f_1'>
-                <div className='row'>
-                    <div className='col-4 img1'>
-                        <img src="" />
-                    </div>
-                    <div className='col-5 mt-4'>
-                        <h4>priel gozlan</h4>
-                        <p>20.3.2024</p>
-                    </div>
-                    <div className='col-3 box_t_f_b'>
-                        {setTokem.istoken ? <button> הצעת חברות</button>:null}
-                        
-                    </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis odit cupiditate maxime saepe quos necessitatibus aliquid, voluptates tempore eligendi at ut earum, enim nobis vel. Natus vitae quibusdam nobis aspernatur iste tempore maiores accusamus. Fugit quisquam architecto rem nisi, nemo ipsam sequi voluptate beatae est earum! Atque quis dolorum cum optio ratione error laudantium maxime quaerat culpa iste illo ex quod quidem autem deserunt cumque inventore voluptas eum, veniam totam? Perspiciatis amet vel cum voluptatem labore laudantium quidem et eius aliquam odio? Hic repudiandae quaerat dolor beatae modi consequatur sequi eos ducimus nulla aspernatur perspiciatis unde, amet quidem ullam fugit!</p>
-                <div className='row'>
-                <div className='box_icon col-2'>
-                    <button><FcLike/></button>
-                    <p>0</p>
-                </div>
-                <div className='box_icon col-2'>
-                    <button><AiFillLike/></button>
-                    <p>0</p>
-                </div>
-                <div className='box_icon col-2'>
-                    <button><FaRegFaceKissWinkHeart/></button>
-                    <p>0</p>
-                </div>
-                </div>
-
+            
             </div>
 
 
@@ -86,7 +49,7 @@ const TableFeed = ({setTokem}) => {
 
 
 
-        </div>
+        
     )
 }
 

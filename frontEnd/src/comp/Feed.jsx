@@ -1,42 +1,67 @@
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import '../Css_for_comp/Feed.css'
 import TableFeed from './TableFeed'
 import { FaPlus } from "react-icons/fa";
-import {jwtDecode} from 'jwt-decode'
-import {Link} from "react-router-dom"
+import { jwtDecode } from 'jwt-decode'
+import { Link } from "react-router-dom"
 import WritePost from './WritePost';
 
 const Feed = () => {
   const token = localStorage.getItem('token')
-  const [userName,setuserName] = useState("שם משתמש")
-  const [Post,setPost] = useState(true)
-  const [istoken,setistoken] = useState(token)
-  const setTokem = {istoken,setistoken}
-  
-  const hendlePost = ()=>{
+  const [userName, setuserName] = useState("שם משתמש")
+  const [Post, setPost] = useState(true)
+  const [postsList, setPostsList] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [istoken, setistoken] = useState(token)
+  const [newPost, setNewPost] = useState(false)
+  const setTokem = { istoken, setistoken }
+
+  const hendlePost = () => {
     setPost(false)
   }
-  const hendlePost2 = ()=>{
+  const hendlePost2 = () => {
 
     setPost(true)
   }
 
 
-    
+  const postAll = () => {
+    setIsLoading(true)
+    fetch("http://localhost:3000/posts")
+      .then(res => res.json())
+      .then((data) => {
+        setPostsList(data)
+        setIsLoading(false)
+        console.log(data);
+        if (!data) {
+          setIsLoading(false)
+          alert("אין פוסטים")
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert(`שגיאה בשליחת הפו��ט ${error.message}`);
+      }
+      )
+  }
+
 
   useEffect(() => {
-    if (token) 
-      {setuserName(jwtDecode(token).user.name);
-      }
-    else{setuserName("שם משתמש")}
+    if (token) {
+      setuserName(jwtDecode(token).user.name);
+    }
+    else { setuserName("שם משתמש") }
 
     setistoken(token)
   }, [token]);
 
-
-
+  useEffect(() => {
+    postAll()
+    setNewPost(false)
+  }, [newPost])
+  
   return (
-    
+
     <div className='container'>
       <div className='row'>
         <div className='col-3 box_f_1'>
@@ -67,21 +92,22 @@ const Feed = () => {
         <div className='col-6 box_f_2'>
 
           <div className='box_f_3'>
-            {istoken?
-            !Post ? (<WritePost hendlePost2={hendlePost2}/>):
-            (<button onClick={hendlePost}><FaPlus /> פוסט חדש</button>):null}
+            {istoken ?
+              !Post ? (<WritePost hendlePost2={hendlePost2} setNewPost={setNewPost}/>) :
+                (<button onClick={hendlePost}><FaPlus /> פוסט חדש</button>) : null}
 
-            
+
           </div>
-
+        
           <div>
-            <TableFeed setTokem={setTokem}/>
+            {isLoading?"loading"
+            :postsList.map((pros)=><TableFeed setTokem={setTokem} pros={pros}/>)}
           </div>
 
         </div>
 
         <div className='col-2 box_f3'>
-        <img src='mego.jpg'/>
+          <img src='mego.jpg' />
 
         </div>
 

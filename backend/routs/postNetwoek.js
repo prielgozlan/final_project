@@ -34,12 +34,8 @@ router.post("/" , authToken, async(req,res) => {
     }
   })
   
-<<<<<<< HEAD
 
   router.get("/:idget",authToken,async(req,res) => {
-=======
-  router.get("/idget",authToken,async(req,res) => {
->>>>>>> bab4e606eb9b62d32728a2dbfe27f2388a590859
     try{
       let idget = req.tokenData.user._id;
       let data

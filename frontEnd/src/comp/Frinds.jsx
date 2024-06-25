@@ -1,6 +1,6 @@
 import React from 'react'
 import "../Css_for_comp/Frinds.css"
-const Frinds = () => {
+const Frinds = ({props}) => {
   return (
     <div className='box_f_b'>
                 <div className='row box_f_b_1'>
@@ -8,7 +8,7 @@ const Frinds = () => {
                         <img src="" />
                     </div>
                     <div className='col-4 mt-4'>
-                        <h4>priel gozlan</h4>
+                        <h4>{props.name}</h4>
                     
                     </div>
                     <div className='col-5 box_t_f_b'>

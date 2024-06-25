@@ -68,20 +68,20 @@ const Feed = () => {
           <div className='box_f1'></div>
 
           <div className='box_f2'>
-            <img src="" />
+            <img src="profile1.png" />
             <div>
               <h5>{userName}</h5>
             </div>
           </div>
           <div className='box_f_6'>
             <div >
-              <a href="#">חברים</a>
+              <Link to={"../Profile"}>חברים</Link>
             </div>
             <div>
-              <a href="#">תמונות</a>
+              <Link to={"../Profile"}>תמונות</Link>
             </div>
             <div>
-              <a href="#">פוסטים</a>
+              <Link to={"../Profile"}>פוסטים</Link>
             </div>
           </div>
 

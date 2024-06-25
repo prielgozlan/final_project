@@ -35,7 +35,7 @@ router.post("/" , authToken, async(req,res) => {
   })
   
 
-  router.get("/:idget",authToken,async(req,res) => {
+  router.post("/idget",authToken,async(req,res) => {
     try{
       let idget = req.tokenData.user._id;
       let data

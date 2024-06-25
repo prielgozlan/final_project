@@ -85,4 +85,10 @@ router.post("/getfraind",authToken,async(req,res)=>{
   let friendsData = await UserModel.find({ _id: { $in: friendIds } });
   res.json(friendsData)
 })
+// router.delete("/:delfrand",authToken,async(req,res)=>{
+//   let fraind = req.params.delfrand;
+//   let del = req.tokenData.user._id;
+
+
+// })
 module.exports = router

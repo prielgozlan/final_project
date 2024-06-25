@@ -63,7 +63,7 @@ router.post("/login" , async(req,res) => {
   res.json(user)
   })
 
-router.put("/",authToken ,async(req,res)=>{
+router.post("/addfrind",authToken ,async(req,res)=>{
   let userIdToAdd = req.body.user_id;
   let tokenUserId = req.tokenData.user._id;
   let user = await UserModel.findById(userIdToAdd);

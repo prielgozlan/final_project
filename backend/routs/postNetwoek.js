@@ -37,16 +37,13 @@ router.post("/" , authToken, async(req,res) => {
     }
   })
   
-  router.get("/:idget",authToken,async(req,res) => {
+  router.get("/idget",authToken,async(req,res) => {
     try{
-      let idget = req.params.idget
+      let idget = req.tokenData.user._id;
       let data
-      if(req.tokenData.user._id == idget){
-        data = await PostModel.find({user_id:idget});
-      }
-      else{
-        data = await PostModel.find({msg:"err"});
-      }
+      
+    data = await PostModel.find({user_id:idget});
+ 
       res.json(data);
     }
     catch(err){

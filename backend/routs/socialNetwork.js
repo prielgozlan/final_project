@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt")
 const router = express.Router();
 const { UserModel, validUser, validLogin, gettoken, valedconect } = require("../models/users.js");
 const { authToken } = require("../auth/authToken.js");
+const { date } = require("joi");
 
 
 
@@ -79,7 +80,9 @@ router.post("/addFrind", authToken, async (req, res) => {
 })
 router.post("/getfraind",authToken,async(req,res)=>{
   let getfraind = req.tokenData.user;
+  console.log(getfraind.friends);
   let data = await UserModel.find({_id:getfraind.friends})
+  console.log(date);
   res.json(data)
 })
 module.exports = router

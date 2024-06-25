@@ -31,11 +31,13 @@ const Profile1 = () => {
         setPosts(true)
         setFrinds(false)
         setPhotos2(false)
+        myPost()
     }
     const frinds1 = ()=>{
         setPosts(false)
         setFrinds(true)
         setPhotos2(false)
+        myFrinds()
     }
     const photos1 = ()=>{
         setPhotos2(true)
@@ -57,7 +59,7 @@ const Profile1 = () => {
     
     }, [token]);
 
-    const myPost = async() => {
+    const myFrinds = async() => {
         const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
@@ -82,6 +84,7 @@ const Profile1 = () => {
         console.log(data);
         if (data) {
             setPostsList(data);
+            console.log(data);
         
         }
     } catch (error) {
@@ -91,7 +94,7 @@ const Profile1 = () => {
 
 
       }
-      const myFrinds = () => {
+      const  myPost = () => {
         
 
       }
@@ -126,10 +129,10 @@ const Profile1 = () => {
                 <button onClick={photos1}>תמונות</button>
             </div>
             <div className='col-1 box_p_5'>
-                <button onClick={{posrs1,myPost}} >פוסטים</button>
+                <button onClick={posrs1} >פוסטים</button>
             </div>
             <div className='col-1 box_p_5'>
-                <button onClick={{frinds1,myFrinds}}>חברים</button>
+                <button onClick={frinds1}>חברים</button>
             </div>
         
         </div>
@@ -137,7 +140,7 @@ const Profile1 = () => {
             <div className='col-7 box_p_7'>
             
             {token? Posts2 ? PostsList.map((props)=><Posts props={props}/>):null:null}
-            {token? Posts2 ? PostsList.map((props)=><Frinds props={props}/>):null:null}
+            {token? Frinds2 ? PostsList.map((props)=><Frinds props={props}/>):null:null}
             {token? Photos2 ? <Photos/>:null:null}
                 
                 

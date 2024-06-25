@@ -81,7 +81,9 @@ router.post("/addFrind", authToken, async (req, res) => {
 })
 router.post("/getfraind",authToken,async(req,res)=>{
   let getfraind = req.tokenData.user;
-  let data = await UserModel.find({_id:getfraind.friends})
-  res.json(data)
+  let userData = await UserModel.findById(getfraind);
+  let friendIds = userData.friends;
+  let friendsData = await UserModel.find({ _id: { $in: friendIds } });
+  res.json(friendsData)
 })
 module.exports = router

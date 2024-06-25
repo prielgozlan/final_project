@@ -13,7 +13,7 @@ const newfrinds = async()=>{
     myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
 
     const raw = JSON.stringify({
-        content: pros
+        ...pros
         
     });
 
@@ -25,13 +25,13 @@ const newfrinds = async()=>{
 
     try {
         const res = await fetch(
-            "http://localhost:3000/users/addFrinds",
+            "http://localhost:3000/users/addFrind",
             requestOptions
         );
         const data = await res.json();
         console.log(data);
         if (data) {
-            alert("חברות הצליחה")
+            alert(data)
         
         }
     } catch (error) {

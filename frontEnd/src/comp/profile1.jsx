@@ -75,7 +75,7 @@ const Profile1 = () => {
 
     try {
         const res = await fetch(
-            "http://localhost:3000/users/addFrind",
+            "http://localhost:3000/users/getfraind",
             requestOptions
         );
         const data = await res.json();

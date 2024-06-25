@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
   address: String,
 
   Marital_Status: String,
+  img:String
 });
 
 exports.UserModel = mongoose.model("users", userSchema);

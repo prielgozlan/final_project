@@ -35,6 +35,37 @@ router.post("/" , authToken, async(req,res) => {
       res.status(500).json(err)
     }
   })
-
-
+  
+  router.get("/:idget",authToken,async(req,res) => {
+    try{
+      let idget = req.params.idget
+      let data
+      if(req.tokenData.user._id == idget){
+        data = await PostModel.find({user_id:idget});
+      }
+      else{
+        data = await PostModel.find({msg:"err"});
+      }
+      res.json(data);
+    }
+    catch(err){
+      console.log(err);
+      res.status(500).json(err)
+    }
+  })
+  router.delete("/:idDel",authToken,async(req,res) => {
+    try{
+      let idDel = req.params.idDel
+      let data;
+      
+    data = await PostModel.deleteOne({_id:idDel,user_id:req.tokenData.user._id});
+      
+    
+      res.json(data);
+    }
+    catch(err){
+      console.log(err);
+      res.status(500).json(err)
+    }
+  })
 module.exports = router

@@ -8,7 +8,8 @@ const postSchema = new mongoose.Schema({
     like1:Number,
     like2:Number,
     like3:Number,
-    user_id:String
+    user_id:String,
+    img:String
     
 
  

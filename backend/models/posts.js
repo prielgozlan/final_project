@@ -19,7 +19,7 @@ const postSchema = new mongoose.Schema({
 
   exports.validPost= (_bodyData) => {
     let joiSchemap = Joi.object({
-      content:Joi.string().min(2).max(99).required(),
+      content:Joi.string().min(10).required(),
       
     })
   

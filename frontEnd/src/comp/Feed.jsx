@@ -75,13 +75,13 @@ const Feed = () => {
           </div>
           <div className='box_f_6'>
             <div >
-              <Link to={"../Profile"}>חברים</Link>
+              <Link to={"../Profile?active=friends"}>חברים</Link>
             </div>
             <div>
-              <Link to={"../Profile"}>תמונות</Link>
+              <Link to={"../Profile?active=images"}>תמונות</Link>
             </div>
             <div>
-              <Link to={"../Profile"}>פוסטים</Link>
+              <Link to={"../Profile?active=posts"}>פוסטים</Link>
             </div>
           </div>
 

@@ -68,4 +68,25 @@ router.delete("/:idDel", authToken, async (req, res) => {
   }
 });
 
+router.put("/:postId", authToken, async (req, res) => {
+    try {
+        let postId = req.params.postId;
+        let userId = req.tokenData.user._id;
+        // עדכון הפוסט בבסיס הנתונים
+        let result = await PostModel.updateOne(
+            { _id: postId, user: userId }, // הקריטריון למציאת הפוסט לעדכון
+            { $set: req.body } // השדות לעדכון
+        );
+             // מציאת הפוסט המעודכן להחזרה בתגובה
+        let updatedPost = await PostModel.findById(postId);
+        res.json(updatedPost);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: "שגיאת שרת" });
+    }
+});
+
+
+
+
 module.exports = router;

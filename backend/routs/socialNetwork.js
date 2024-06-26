@@ -84,10 +84,36 @@ router.post("/getfraind",authToken,async(req,res)=>{
   let friendsData = await UserModel.find({ _id: { $in: friendIds } });
   res.json(friendsData)
 })
-// router.delete("/:delfrand",authToken,async(req,res)=>{
-//   let fraind = req.params.delfrand;
-//   let del = req.tokenData.user._id;
+router.delete("/:delfrand", authToken, async (req, res) => {
+  try {
+    let friendId = req.params.delfrand;
+    let userId = req.tokenData.user._id;
 
+    // מצא את המשתמש לפי מזהה
+    let user = await UserModel.findById(userId);
+    
+   
 
-// })
+ 
+
+    // מצא את האינדקס של החבר במערך החברים
+    const index = user.friends.indexOf(friendId);
+
+    if (index === -1) {
+      return res.status(404).json({ error: "החבר לא נמצא במערך" });
+    }
+
+    // הסר את החבר מהמיקום המתאים במערך
+    user.friends.splice(index, 1);
+
+    // שמור את השינויים במסד הנתונים
+    await user.save();
+
+    res.json({ message: "החבר הוסר בהצלחה" });
+  } catch (error) {
+    console.error("שגיאה:", error);
+    res.status(500).json({ error: "שגיאה בשרת", details: error.message });
+  }
+});
+
 module.exports = router

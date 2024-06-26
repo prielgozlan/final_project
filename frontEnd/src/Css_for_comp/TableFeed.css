@@ -15,8 +15,8 @@
 
 .img1 {
     img {
-        min-width: 100px;
-        min-height: 100px;
+        max-width: 130px;
+        max-height: 130px;
         margin-left: 20px;
         padding: 10px;
         border: 2px solid black;

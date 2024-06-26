@@ -38,7 +38,7 @@ const Frinds = ({props}) => {
     <div className='box_f_b'>
                 <div className='row box_f_b_1'>
                     <div className='col-3 img1'>
-                        <img src="" />
+                        <img src="profile1.png" />
                     </div>
                     <div className='col-4 mt-4'>
                         <h4>{props.name}</h4>

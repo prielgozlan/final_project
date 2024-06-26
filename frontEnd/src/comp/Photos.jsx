@@ -2,7 +2,9 @@ import React from 'react'
 
 const Photos = () => {
   return (
-    <div>Photos</div>
+    <div>
+      <button>הוספת תמונה</button>
+    </div>
   )
 }
 

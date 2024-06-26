@@ -48,7 +48,7 @@ const Posts = ({props}) => {
             <div className='box_t_f_1'>
                 <div className='row'>
                     <div className='col-3 img1'>
-                        <img src="" />
+                        <img src="profile1.png" />
                     </div>
                     <div className='col-4 mt-4'>
                         <h4>{props.name}</h4>

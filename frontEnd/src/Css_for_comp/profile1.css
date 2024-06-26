@@ -20,17 +20,18 @@
         max-width: 150px;
         max-height: 150px;
         margin-left: 20px;
-        border: 2px solid black;
+        /* border: 2px solid black; */
         border-radius: 50%;
         }
 }
 .box_p_3{
     padding: 30px;
+
     /* border: solid 2px black; */
 }
 .box_p_4{
     text-align: right;
-    padding: 30px;
+    /* border: 2px solid black; */
     button{
     color: white;
     background: black;
@@ -39,7 +40,6 @@
 .box_p_5{
     text-align: right;
     margin: 40px;
-    /* border: 2px solid black; */
 
     button{
         color: white;
@@ -66,5 +66,16 @@
     margin: 10px;
     min-height: 700px;
     
+    
+}
+.dropzone1{
+    
+    
+    margin: 10px;
+    color: white;
+    background: black;
+    width: 140px;
+    
+    padding: 10px;
     
 }

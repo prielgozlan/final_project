@@ -11,6 +11,7 @@ import LogUp from './comp/LogUp'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {jwtDecode} from 'jwt-decode'
 import WritePost from './comp/WritePost'
+import FileUpload from './comp/FileUpload '
 
 
 function App() {
@@ -23,10 +24,6 @@ function App() {
   return (
     <div>
 
-      {/* <LogUp/> */}
-      {/* <LogIn/> */}
-      {/* <Profile1/> */}
-      {/* <Feed/> */}
       <Router>
         <Header props={props} />
         <Routes>
@@ -41,7 +38,7 @@ function App() {
         </Routes>
       </Router>
 
-
+      {/* <FileUpload/> */}
 
     </div>
   )

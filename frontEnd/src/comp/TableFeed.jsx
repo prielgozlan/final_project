@@ -48,7 +48,8 @@ return (
             <div className='box_t_f_1'>
                 <div className='row'>
                     <div className='col-4 img1'>
-                        <img src={pros.img} />
+                        {/* <img src={pros.img} /> */}
+                        <img src="profile1.png" />
                     </div>
                     <div className='col-5 mt-4'>
                         <h4>{pros.name}</h4>

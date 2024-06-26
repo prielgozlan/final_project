@@ -37,4 +37,4 @@ exports.clod =  (async (file)=> {
     });
     
     console.log(autoCropUrl);    
-})();
+});

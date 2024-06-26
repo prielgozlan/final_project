@@ -1,28 +1,50 @@
+
+
+
 const express = require("express");
 const bcrypt = require("bcrypt")
 const router = express.Router();
 const { UserModel, validUser, validLogin, gettoken, valedconect } = require("../models/users.js");
 const { authToken } = require("../auth/authToken.js");
 const { date } = require("joi");
-const {clod} = require("../index.js")
+const { clod } = require("../index.js");
+const multer = require("multer");
 
 
-router.post("/upload-image", async (req, res) => {
+const upload = multer({ dest: "uploads/" });
+
+router.post("/uploadimage", authToken, upload.single("file"), async (req, res) => {
   try {
-      // מניחים שנתיב הקובץ מסופק בגוף הבקשה
-      const { filePath } = req.body; // ודא שנתיב הקובץ מסופק מצד הלקוח
+      const filePath = req.file.path; // קבלת נתיב הקובץ בשרת
+      const userId = req.tokenData.user._id;
 
-      // קריאה לפונקציה clod כדי להעלות את התמונה
+      // העלאת התמונה ל-Cloudinary
       const result = await clod(filePath);
 
-      // מחזיר תשובה עם התוצאה
-      res.json({ result });
+      // עדכון המשתמש עם התמונה החדשה
+      const updatedUser = await UserModel.findByIdAndUpdate(
+          userId,
+          { imguser: result.secure_url },
+          { new: true }
+      );
+
+      if (!updatedUser) {
+          return res.status(404).json({ error: 'משתמש לא נמצא' });
+      }
+
+      // מחיקת הקובץ הזמני מהשרת אם צריך
+      // fs.unlinkSync(filePath);
+
+      // מחזיר תשובה עם המשתמש המעודכן
+      res.status(200).json({ 
+          message: "התמונה הועלתה ועודכנה בהצלחה", 
+          user: updatedUser 
+      });
   } catch (error) {
       console.error('שגיאה בהעלאת התמונה:', error);
       res.status(500).json({ error: 'נכשל בהעלאת התמונה' });
   }
 });
-
 router.post("/logup", async (req, res) => {
 
   //מתודה שבודקת האם התוקן תקין 

@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
   address: String,
   Marital_Status: String,
   imguser:String,
-  imgbakrand:String
+  imgbakrand:String,
+
 });
 
 exports.UserModel = mongoose.model("users", userSchema);

@@ -25,7 +25,7 @@ const Profile1 = () => {
 
 
 
-    const [Posts2, setPosts] = useState(false)
+    const [Posts2, setPosts] = useState(true)
     const [Frinds2, setFrinds] = useState(false)
     const [Photos2, setPhotos2] = useState(false)
 
@@ -59,7 +59,7 @@ const Profile1 = () => {
             , setuserType("סטטוס")
             setuserCity("שם עיר")
         }
-
+        myPost()
 
     }, [token]);
 

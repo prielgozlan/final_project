@@ -34,6 +34,7 @@ const navigate = useNavigate()
             const data = await res.json();
             console.log(data);
             if (data) {
+                console.log(data);
                 alert("נשמר הפוסט בהצלחה")
                 setNewPost(true)
                 hendlePost2()

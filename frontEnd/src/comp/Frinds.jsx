@@ -24,7 +24,7 @@ const Frinds = ({props}) => {
             console.log(data);
             if (data) {
                 console.log(data);
-                alert(data)
+                alert("מחיקה הצליחה")
             
             }
         } catch (error) {

@@ -7,6 +7,37 @@ import { FaRegFaceKissWinkHeart } from "react-icons/fa6";
 
 const Posts = ({props}) => {
 
+    const deletePost = async()=>{
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
+    
+        
+    
+        const requestOptions = {
+            method: "DELETE",
+            headers: myHeaders,
+            
+        };
+    
+        try {
+            const res = await fetch(
+                `http://localhost:3000/posts/${props._id}`,
+                requestOptions
+            );
+            const data = await res.json();
+            console.log(data);
+            if (data) {
+                console.log(data);
+                alert(data)
+            
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert(`שגיאה בשליחת הפוסט ${error.message}`);
+        }
+    
+    }
 
 
 
@@ -21,14 +52,14 @@ const Posts = ({props}) => {
                     </div>
                     <div className='col-4 mt-4'>
                         <h4>{props.name}</h4>
-                        <p>20.3.2024</p>
+                        <p>{props.createdAt}</p>
                     </div>
                     <div className='col-5 box_t_f_b'>
-                        <button>מחיקת פוסט</button>
+                        <button onClick={deletePost}>מחיקת פוסט</button>
                         <button>עריכה פוסט</button>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis odit cupiditate maxime saepe quos necessitatibus aliquid, voluptates tempore eligendi at ut earum, enim nobis vel. Natus vitae quibusdam nobis aspernatur iste tempore maiores accusamus. Fugit quisquam architecto rem nisi, nemo ipsam sequi voluptate beatae est earum! Atque quis dolorum cum optio ratione error laudantium maxime quaerat culpa iste illo ex quod quidem autem deserunt cumque inventore voluptas eum, veniam totam? Perspiciatis amet vel cum voluptatem labore laudantium quidem et eius aliquam odio? Hic repudiandae quaerat dolor beatae modi consequatur sequi eos ducimus nulla aspernatur perspiciatis unde, amet quidem ullam fugit!</p>
+                <p>{props.content}</p>
                 <div className='row'>
                 <div className='box_icon col-2'>
                     <button><FcLike/></button>

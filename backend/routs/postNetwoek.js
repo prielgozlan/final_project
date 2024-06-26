@@ -48,20 +48,23 @@ router.post("/idget", authToken, async (req, res) => {
 router.delete("/:idDel", authToken, async (req, res) => {
   try {
     let idDel = req.params.idDel;
-    let post = await PostModel.findOne({_id:idDel});
-    console.log(post)
-    if (!post) {
-      res.status(404).json({ msg: "post not found" });
-    } else if (post.user_id != req.tokenData.user._id) {
-      res
-        .status(403)
-        .json({ msg: "You do not have permission for this action " })
-        .send();
-    } else {
+    console.log(idDel);
+    // let post = await PostModel.findOne({_id:idDel});
+    // console.log(post)
+    // if (!post) {
+    //   res.status(404).json({ msg: "post not found" });
+    // }
+    //  else if (post.user_id != req.tokenData.user._id) {
+    //   res
+    //     .status(403)
+    //     .json({ msg: "You do not have permission for this action " })
+    //     .send();
+    // } else {
+    
       let data;
       data = await PostModel.deleteOne({ _id: idDel });
-      res.json(data);
-    }
+      res.json("מחיקה הצליחה");
+    
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

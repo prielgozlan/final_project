@@ -18,7 +18,8 @@ const Profile1 = () => {
     const [userName,setuserName] = useState(false)
     const [userCity,setuserCity] = useState(false)
     const [userType,setuserType] = useState(false)
-    const [PostsList,setPostsList] = useState([])
+    const [frindList,setFrindsList] = useState([])
+    const [postsList,setPostsList] = useState([])
 
 
 
@@ -31,11 +32,13 @@ const Profile1 = () => {
         setPosts(true)
         setFrinds(false)
         setPhotos2(false)
+        myPost()
     }
     const frinds1 = ()=>{
         setPosts(false)
         setFrinds(true)
         setPhotos2(false)
+        myFrinds()
     }
     const photos1 = ()=>{
         setPhotos2(true)
@@ -57,20 +60,14 @@ const Profile1 = () => {
     
     }, [token]);
 
-    const myPost = async() => {
+    const myFrinds = async() => {
         const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
-
-    // const raw = JSON.stringify({
-    //     ...pros
-        
-    // });
-
-    const requestOptions = {
+const requestOptions = {
         method: "POST",
         headers: myHeaders,
-        // body: raw,
+        
     };
 
     try {
@@ -81,7 +78,8 @@ const Profile1 = () => {
         const data = await res.json();
         console.log(data);
         if (data) {
-            setPostsList(data);
+            setFrindsList(data);
+            console.log(data);
         
         }
     } catch (error) {
@@ -91,8 +89,36 @@ const Profile1 = () => {
 
 
       }
-      const myFrinds = () => {
-        
+
+
+
+      const  myPost = async() => {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
+    
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            
+        };
+    
+        try {
+            const res = await fetch(
+                "http://localhost:3000/posts/idget",
+                requestOptions
+            );
+            const data = await res.json();
+            console.log(data);
+            if (data) {
+                setPostsList(data);
+                console.log(data);
+            
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert(`שגיאה בשליחת הפוסט ${error.message}`);
+        }
 
       }
     
@@ -102,16 +128,16 @@ const Profile1 = () => {
 
 
 
-
   return (
     <div className='container'>
         <div className='box_p_1'>
+            <img className='box_img' src='backgraond.jpeg'/>
           <button>עריכת תמונת רקיע <FaCamera/></button>      
         </div>
         <div className='row'>
             
             <div className='col-2 box_p_2'>
-                <img src=''/>
+                <img src='profile1.png'/>
             </div>
             <div className='col-3 box_p_3'>
                 <h2>{userName}</h2>
@@ -126,18 +152,18 @@ const Profile1 = () => {
                 <button onClick={photos1}>תמונות</button>
             </div>
             <div className='col-1 box_p_5'>
-                <button onClick={{posrs1,myPost}} >פוסטים</button>
+                <button onClick={posrs1} >פוסטים</button>
             </div>
             <div className='col-1 box_p_5'>
-                <button onClick={{frinds1,myFrinds}}>חברים</button>
+                <button onClick={frinds1}>חברים</button>
             </div>
         
         </div>
         <div className='row'>
             <div className='col-7 box_p_7'>
             
-            {token? Posts2 ? PostsList.map((props)=><Posts props={props}/>):null:null}
-            {token? Posts2 ? PostsList.map((props)=><Frinds props={props}/>):null:null}
+            {token? Posts2 ? postsList.map((props)=><Posts props={props}/>):null:null}
+            {token? Frinds2 ? frindList.map((props)=><Frinds props={props}/>):null:null}
             {token? Photos2 ? <Photos/>:null:null}
                 
                 

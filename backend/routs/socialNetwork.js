@@ -4,9 +4,24 @@ const router = express.Router();
 const { UserModel, validUser, validLogin, gettoken, valedconect } = require("../models/users.js");
 const { authToken } = require("../auth/authToken.js");
 const { date } = require("joi");
+const {clod} = require("../index.js")
 
 
+router.post("/upload-image", async (req, res) => {
+  try {
+      // מניחים שנתיב הקובץ מסופק בגוף הבקשה
+      const { filePath } = req.body; // ודא שנתיב הקובץ מסופק מצד הלקוח
 
+      // קריאה לפונקציה clod כדי להעלות את התמונה
+      const result = await clod(filePath);
+
+      // מחזיר תשובה עם התוצאה
+      res.json({ result });
+  } catch (error) {
+      console.error('שגיאה בהעלאת התמונה:', error);
+      res.status(500).json({ error: 'נכשל בהעלאת התמונה' });
+  }
+});
 
 router.post("/logup", async (req, res) => {
 

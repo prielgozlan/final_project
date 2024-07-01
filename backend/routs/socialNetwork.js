@@ -98,6 +98,10 @@ router.get("/", authToken, async (req, res) => {
   let user = await UserModel.findOne({ id: req.tokenData._id }, { pass: 0 });
   res.json(user)
 })
+router.get("/search", async (req, res) => {
+  let user = await UserModel.find({});
+  res.json(user)
+})
 
 router.post("/addFrind", authToken, async (req, res) => {
   console.log(req.body);

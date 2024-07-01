@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {jwtDecode} from 'jwt-decode'
 import WritePost from './comp/WritePost'
 import FileUpload from './comp/FileUpload '
+import Search from './comp/Search'
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path='/login' element={<LogIn props={props} />} />
           <Route path='/logup' element={<LogUp props={props} />} />
           <Route path='/writePost' element={<WritePost/>} />
+          <Route path='/search' element={<Search/>} />
           {/* </Route> */}
         </Routes>
       </Router>

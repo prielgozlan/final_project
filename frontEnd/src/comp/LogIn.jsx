@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import '../Css_for_comp/LogIn.css'
 import { Link, useNavigate } from 'react-router-dom'
 const LogIn = ({props}) => {
+
   const navigate = useNavigate()
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     const myHeaders = new Headers();

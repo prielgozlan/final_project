@@ -34,14 +34,19 @@ const Header = ({ props,propsChack }) => {
         const filter = data.filter(listUser => listUser.name.toLowerCase().startsWith(searchName.current.value.toLowerCase()))
         setSearch(filter)
         setSearch1(true)
+        navigate("/")
         propsChack.setchackSearch(false)
+        console.log(filter);
+        console.log(data);
         
         if (filter.length == data.length){
           setSearch1(false)
           propsChack.setchackSearch(true)
-          console.log(filter);
-          console.log(data);
+          
 
+        }
+        else if(filter.length == 0){
+          alert("לא נמצאו חברים")
         }
       }
       

@@ -65,7 +65,7 @@ const LogUp = ({ props }) => {
 
 
         if (!re.test(passwordRef.current.value)) {
-            setPsaaword("הסיסמא צריכה להכיל לפחות 8 תווים ,מתוכם לפחות ספרה אחד ותו מיוחד")
+            setPsaaword("הסיסמא צריכה להיות בעברית וצריכה להכיל לפחות 8 תווים ,מתוכם לפחות ספרה אחד ותו מיוחד")
         } else {
             setPsaaword(<AiFillLike />)
 
@@ -159,11 +159,11 @@ const LogUp = ({ props }) => {
                         <p>{email}</p>
                     </div>
                     <div className='box_lu_2'>
-                        <input type="text" ref={passwordRef} onChange={checkPassword} placeholder='סיסמא' />
+                        <input type="password" ref={passwordRef} onChange={checkPassword} placeholder='סיסמא' />
                         <p>{pass}</p>
                     </div>
                     <div className='box_lu_2'>
-                        <input type="text" ref={passwordRef1} onChange={checkPassword1} placeholder='הקש סיסמא שוב' />
+                        <input type="password" ref={passwordRef1} onChange={checkPassword1} placeholder='הקש סיסמא שוב' />
                         <p>{psaaword1}</p>
                     </div>
                     <div className='box_lu_2'>

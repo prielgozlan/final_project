@@ -8,18 +8,17 @@ const { UserModel, validUser, validLogin, gettoken, valedconect } = require("../
 const { authToken } = require("../auth/authToken.js");
 const { date } = require("joi");
 const { clod } = require("../index.js");
-const multer = require("multer");
 
 
-const upload = multer({ dest: "uploads/" });
 
-router.post("/uploadimage", authToken, upload.single("file"), async (req, res) => {
+router.post("/upload", authToken,  async (req, res) => {
   try {
-      const filePath = req.file.path; // קבלת נתיב הקובץ בשרת
+      const filePath = req.file;// קבלת נתיב הקובץ בשרת
       const userId = req.tokenData.user._id;
 
       // העלאת התמונה ל-Cloudinary
       const result = await clod(filePath);
+      console.log(result);
 
       // עדכון המשתמש עם התמונה החדשה
       const updatedUser = await UserModel.findByIdAndUpdate(
@@ -33,9 +32,9 @@ router.post("/uploadimage", authToken, upload.single("file"), async (req, res) =
       }
 
       // מחיקת הקובץ הזמני מהשרת אם צריך
-      // fs.unlinkSync(filePath);
+      fs.unlinkSync(filePath);
 
-      // מחזיר תשובה עם המשתמש המעודכן
+    //  מחזיר תשובה עם המשתמש המעודכן
       res.status(200).json({ 
           message: "התמונה הועלתה ועודכנה בהצלחה", 
           user: updatedUser 
@@ -45,6 +44,8 @@ router.post("/uploadimage", authToken, upload.single("file"), async (req, res) =
       res.status(500).json({ error: 'נכשל בהעלאת התמונה' });
   }
 });
+
+
 router.post("/logup", async (req, res) => {
 
   //מתודה שבודקת האם התוקן תקין 

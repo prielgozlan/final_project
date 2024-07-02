@@ -148,7 +148,7 @@ const Profile1 = () => {
         formData.append('file', file);
         
         const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        // myHeaders.append("Content-Type", "application/json");
         myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
     
 

@@ -45,9 +45,9 @@ const Header = ({ props,propsChack }) => {
           
 
         }
-        else if(filter.length == 0){
-          alert("לא נמצאו חברים")
-        }
+        // else if(filter.length == 0){
+        //   alert("לא נמצאו חברים")
+        // }
       }
       
     } catch (error) {

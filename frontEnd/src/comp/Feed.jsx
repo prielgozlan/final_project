@@ -9,6 +9,7 @@ import WritePost from './WritePost';
 const Feed = () => {
   const token = localStorage.getItem('token')
   const [userName, setuserName] = useState("שם משתמש")
+  const [userImg, setuserImg] = useState("")
   const [Post, setPost] = useState(true)
   const [postsList, setPostsList] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -49,6 +50,7 @@ const Feed = () => {
   useEffect(() => {
     if (token) {
       setuserName(jwtDecode(token).user.name);
+      setuserImg(jwtDecode(token).user.name.imguser);
     }
     else { setuserName("שם משתמש") }
 

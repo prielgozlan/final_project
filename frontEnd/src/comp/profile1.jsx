@@ -16,9 +16,10 @@ const Profile1 = () => {
 
     const token = localStorage.getItem('token')
 
-    const [userName, setuserName] = useState(false)
-    const [userCity, setuserCity] = useState(false)
-    const [userType, setuserType] = useState(false)
+    const [userName, setuserName] = useState("")
+    const [userCity, setuserCity] = useState("")
+    const [userType, setuserType] = useState("")
+    const [userImg, setuserImg] = useState("")
     const [frindList, setFrindsList] = useState([])
     const [postsList, setPostsList] = useState([])
 
@@ -52,6 +53,7 @@ const Profile1 = () => {
             setuserName(jwtDecode(token).user.name)
             setuserCity(jwtDecode(token).user.address)
             setuserType(jwtDecode(token).user.Marital_Status)
+            setuserImg(jwtDecode(token).user.imguser)
 
         }
         else {
@@ -161,6 +163,7 @@ const Profile1 = () => {
           });
           // קבלת תגובת השרת והצגת ה-URL של הקובץ שהועלה
           const data = await response.json();
+          console.log(data);
           alert(data)
         } catch (error) {
           // טיפול בשגיאות
@@ -181,7 +184,9 @@ const Profile1 = () => {
             <div className='row'>
 
                 <div className='col-2 box_p_2'>
-                    <img src='profile1.png' />
+                    {userImg == "" ?<img src='profile1.png'/>:<img src={userImg}/>}
+                    
+                    
                 </div>
                 <div className='col-8 box_p_3'>
                     <h2>{userName}</h2>

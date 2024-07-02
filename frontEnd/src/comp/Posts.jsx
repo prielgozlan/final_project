@@ -74,7 +74,7 @@ const Posts = ({ props }) => {
                     <div className='col-5 box_t_f_b'>
                         <button onClick={deletePost}>מחיקת פוסט</button>
                         {istoken ?
-                            !Post ? (<EditPost hendlePost2={hendlePost2} setNewPost={setNewPost} />) :
+                            !Post ? (<EditPost hendlePost2={hendlePost2} setNewPost={setNewPost} props={props} />) :
                                 (<button onClick={hendlePost}>  עריכה פוסט</button>) : null}
                 
                     </div>

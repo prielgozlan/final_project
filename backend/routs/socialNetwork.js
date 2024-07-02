@@ -8,42 +8,50 @@ const { UserModel, validUser, validLogin, gettoken, valedconect } = require("../
 const { authToken } = require("../auth/authToken.js");
 const { date } = require("joi");
 const { clod } = require("../index.js");
+const fs = require("fs");
+const multer = require('multer'); // ייבוא multer
 
 
 
-router.post("/upload", authToken,  async (req, res) => {
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+router.post('/upload', authToken, upload.single('file'), async (req, res) => {
   try {
-      const filePath = req.file;// קבלת נתיב הקובץ בשרת
-      const userId = req.tokenData.user._id;
+    if (!req.file) {
+      return res.status(400).send({ message: 'לא הועלה קובץ' });
+    }
 
-      // העלאת התמונה ל-Cloudinary
-      const result = await clod(filePath);
-      console.log(result);
+    const file = req.file;
+    console.log(file);
 
-      // עדכון המשתמש עם התמונה החדשה
-      const updatedUser = await UserModel.findByIdAndUpdate(
-          userId,
-          { imguser: result.secure_url },
-          { new: true }
-      );
+    // העלאת הקובץ ל-Cloudinary
+    const uploadResult = await clod(file.buffer);
+    if (!uploadResult || !uploadResult.secure_url) {
+      return res.status(500).send({ message: 'שגיאה בהעלאת התמונה ל-Cloudinary' });
+    }
 
-      if (!updatedUser) {
-          return res.status(404).json({ error: 'משתמש לא נמצא' });
-      }
+    // עדכון המשתמש עם התמונה החדשה במסד הנתונים
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      req.tokenData.user._id,
+      { imguser: uploadResult.secure_url },
+      { new: true }
+    );
 
-      // מחיקת הקובץ הזמני מהשרת אם צריך
-      fs.unlinkSync(filePath);
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'משתמש לא נמצא' });
+    }
 
-    //  מחזיר תשובה עם המשתמש המעודכן
-      res.status(200).json({ 
-          message: "התמונה הועלתה ועודכנה בהצלחה", 
-          user: updatedUser 
-      });
+    res.status(200).json({
+      message: "התמונה הועלתה ועודכנה בהצלחה",
+      user: updatedUser,
+    });
   } catch (error) {
-      console.error('שגיאה בהעלאת התמונה:', error);
-      res.status(500).json({ error: 'נכשל בהעלאת התמונה' });
+    console.error('שגיאה בהעלאת הקובץ:', error);
+    res.status(500).json({ error: 'נכשל בהעלאת הקובץ' });
   }
 });
+
 
 
 router.post("/logup", async (req, res) => {

@@ -1,40 +1,50 @@
 const cloudinary = require('cloudinary').v2;
 
-exports.clod =  (async (file)=> {
-    // Configuration
-    cloudinary.config({ 
-        cloud_name: 'dlgjc1dzo', 
-        api_key: '666325575846635', 
-        api_secret: 'RRwAn2BbGFYCbzNkWNNAQ-rROHA' // Click 'View Credentials' below to copy your API secret
-    });
-    
-    // Upload an image
-     const uploadResult = await cloudinary.uploader
-       .upload(file, {
-               public_id: 'shoes',
-           }
-       )
-       .catch((error) => {
-           console.log(error);
-       });
-    
-    console.log(uploadResult);
-    
-    // Optimize delivery by resizing and applying auto-format and auto-quality
-    const optimizeUrl = cloudinary.url('shoes', {
-        fetch_format: 'auto',
-        quality: 'auto'
-    });
-    
-    console.log(optimizeUrl);
-    
-    // Transform the image: auto-crop to square aspect_ratio
-    const autoCropUrl = cloudinary.url('shoes', {
-        crop: 'auto',
-        gravity: 'auto',
-        width: 500,
-        height: 500,
-    });
-    
-    console.log(autoCropUrl);    
+// Configuration
+cloudinary.config({
+  cloud_name: 'dlgjc1dzo',
+  api_key: '666325575846635',
+  api_secret: 'RRwAn2BbGFYCbzNkWNNAQ-rROHA',
+  secure: true,
 });
+
+exports.clod = async (fileBuffer) => {
+  try {
+    // העלאת תמונה ל-Cloudinary
+    const uploadResult = await new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      });
+      uploadStream.end(fileBuffer);
+    });
+
+    console.log(uploadResult);
+
+    // אופטימיזציה לתמונה
+    const optimizeUrl = cloudinary.url(uploadResult.public_id, {
+      fetch_format: 'auto',
+      quality: 'auto'
+    });
+
+    console.log(optimizeUrl);
+
+    // חיתוך אוטומטי של התמונה
+    const autoCropUrl = cloudinary.url(uploadResult.public_id, {
+      crop: 'auto',
+      gravity: 'auto',
+      width: 500,
+      height: 500,
+    });
+
+    console.log(autoCropUrl);
+
+    return uploadResult;
+  } catch (error) {
+    console.error('Error uploading to Cloudinary:', error);
+    throw error;
+  }
+};

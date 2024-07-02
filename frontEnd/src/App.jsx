@@ -9,7 +9,7 @@ import Feed from './comp/Feed'
 import LogIn from './comp/LogIn'
 import LogUp from './comp/LogUp'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import {jwtDecode} from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 import WritePost from './comp/WritePost'
 import FileUpload from './comp/FileUpload '
 import Search from './comp/Search'
@@ -18,25 +18,24 @@ import Search from './comp/Search'
 function App() {
   const token = localStorage.getItem('token')
   const [isAuthenticated, setIsAuthenticated] = useState(token != null)
+  const [chackSearch, setchackSearch] = useState(true)
 
 
   const props = { isAuthenticated, setIsAuthenticated }
+  const propsChack = { chackSearch, setchackSearch }
 
   return (
     <div>
 
       <Router>
-        <Header props={props} />
+        <Header props={props} propsChack={propsChack} />
         <Routes>
-          {/* <Route path='/' element={<Header/>}> */}
-          <Route path='/' element={<Feed />} />
+          {chackSearch ? <Route path='/' element={<Feed />} /> : null}
           <Route path='/feed' element={<Feed />} />
           <Route path='/Profile' element={<Profile1 />} />
           <Route path='/login' element={<LogIn props={props} />} />
           <Route path='/logup' element={<LogUp props={props} />} />
-          <Route path='/writePost' element={<WritePost/>} />
-          <Route path='/search' element={<Search/>} />
-          {/* </Route> */}
+          <Route path='/writePost' element={<WritePost />} />
         </Routes>
       </Router>
 

@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, } from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../Css_for_comp/Header.css'
 import { FaHome } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
@@ -7,7 +8,8 @@ import { IoMdLogIn } from "react-icons/io";
 import { Outlet, Link } from 'react-router-dom'
 import Search from './Search';
 
-const Header = ({ props }) => {
+const Header = ({ props,propsChack }) => {
+  const navigate = useNavigate()
   const token = localStorage.getItem('token')
   const searchName = useRef()
   const [search, setSearch] = useState("")
@@ -20,35 +22,23 @@ const Header = ({ props }) => {
     alert("התנתקות הצליחה")
   }
   const Search1 = async () => {
-    // setSearch1(true)
-    // const myHeaders = new Headers();
-    // myHeaders.append("Content-Type", "application/json");
-    // myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
 
-    // const raw = JSON.stringify({
-    //   content: searchName.current.value,
-
-    // });
-
-    // const requestOptions = {
-    //   method: "POST",
-    //   headers: myHeaders,
-    //   body: raw,
-    // };
 
     try {
       const res = await fetch(
         `http://localhost:3000/users/search`
-        // ,requestOptions
+        
       );
       const data = await res.json();
       if (data) {
         const filter = data.filter(listUser => listUser.name.toLowerCase().startsWith(searchName.current.value.toLowerCase()))
-        // console.log(filter); 
         setSearch(filter)
         setSearch1(true)
+        propsChack.setchackSearch(false)
+        
         if (filter.length == data.length){
           setSearch1(false)
+          propsChack.setchackSearch(true)
           console.log(filter);
           console.log(data);
 
@@ -104,13 +94,15 @@ const Header = ({ props }) => {
       </div>
       {search1?search.map((props)=> <Search props={props}/> ):null}
 
+      {/* {search1?navigate("/search" ,props={}):navigate("/")} */}
 
 
 
 
 
+
+      {/* <Outlet /> */}
       
-      <Outlet />
     </>
 
   )

@@ -9,12 +9,13 @@ const { authToken } = require("../auth/authToken.js");
 const { date } = require("joi");
 const { clod } = require("../index.js");
 const fs = require("fs");
-const multer = require('multer'); // ייבוא multer
+const multer = require('multer'); 
 
 
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+
 
 router.post('/upload', authToken, upload.single('file'), async (req, res) => {
   try {
@@ -44,7 +45,7 @@ router.post('/upload', authToken, upload.single('file'), async (req, res) => {
 
     res.status(200).json({
       message: "התמונה הועלתה ועודכנה בהצלחה",
-      user: updatedUser,
+      user: uploadResult,
     });
   } catch (error) {
     console.error('שגיאה בהעלאת הקובץ:', error);
@@ -78,7 +79,6 @@ router.post("/logup", async (req, res) => {
   }
 
 });
-
 
 
 router.post("/login", async (req, res) => {

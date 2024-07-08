@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone';
 
 
+
 import "../Css_for_comp/profile1.css"
 
 import Posts from './Posts';
@@ -58,8 +59,9 @@ const Profile1 = () => {
         }
         else {
             setuserName("שם משתמש")
-            , setuserType("סטטוס")
-            setuserCity("שם עיר")
+                , setuserType("סטטוס")
+            setuserCity("שם עיר"),
+                setuserImg(null)
         }
         myPost()
 
@@ -114,10 +116,10 @@ const Profile1 = () => {
                 requestOptions
             );
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
             if (data) {
                 setPostsList(data);
-                console.log(data);
+                // console.log(data);
 
             }
         } catch (error) {
@@ -130,47 +132,55 @@ const Profile1 = () => {
 
     const [file, setFile] = useState(null);
 
-  
+
     // פונקציה לטיפול בקבלת קבצים בגרירה ושחרור
     const onDrop = (acceptedFiles) => {
-      // שמירת הקובץ שנבחר במצב
-      setFile(acceptedFiles[0]);
-      console.log(file);
-      handleClick()
+        // שמירת הקובץ שנבחר במצב
+        setFile(acceptedFiles[0]);
+        console.log(file);
+        handleClick()
     };
-  
+
     // שימוש ב-hook של react-dropzone לטיפול בגרירה ושחרור
     const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
 
     const handleClick = async () => {
-    
+
         // יצירת אובייקט FormData והוספת הקובץ אליו
         const formData = new FormData();
         formData.append('file', file);
-        
+
         const myHeaders = new Headers();
         // myHeaders.append("Content-Type", "application/json");
         myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
-    
+
 
         try {
-          // שליחת בקשת POST לשרת עם הקובץ
-          const response = await fetch('http://localhost:3000/users/upload', {
-            method: 'POST',
-            body: formData,
-            headers: myHeaders
-          });
-          // קבלת תגובת השרת והצגת ה-URL של הקובץ שהועלה
-          const data = await response.json();
-          console.log(data);
-          alert(data)
+            // שליחת בקשת POST לשרת עם הקובץ
+            const response = await fetch('http://localhost:3000/users/upload', {
+                method: 'POST',
+                body: formData,
+                headers: myHeaders
+            });
+            // קבלת תגובת השרת והצגת ה-URL של הקובץ שהועלה
+            const data = await response.json();
+            console.log(data);
+            let token = data.token
+            console.log(token);
+            localStorage.setItem("token", token)
+
+
+            // window.location.reload(); 
+
+            
+        
         } catch (error) {
-          // טיפול בשגיאות
-          console.error('Error uploading file:', error);
+            // טיפול בשגיאות
+            console.error('Error uploading file:', error);
         }
-      };
-  
+    };
+
 
 
 
@@ -184,9 +194,10 @@ const Profile1 = () => {
             <div className='row'>
 
                 <div className='col-2 box_p_2'>
-                    {userImg == "" ?<img src='profile1.png'/>:<img src={userImg}/>}
-                    
-                    
+                    {userImg == null ? <img src='profile1.png' /> : <img src={userImg} />}
+                    {/* <img src='profile1.png'/> */}
+
+
                 </div>
                 <div className='col-8 box_p_3'>
                     <h2>{userName}</h2>
@@ -197,7 +208,7 @@ const Profile1 = () => {
                         <button {...getInputProps()}></button>
                         עריכת פרופיל <MdOutlineSettings />
                     </div>
-            </div>
+                </div>
             </div>
             <div className='row'>
                 <div className='col-4'></div>
@@ -216,7 +227,7 @@ const Profile1 = () => {
                 <div className='col-7 box_p_7'>
 
                     {token ? Posts2 ? postsList.map((props) => <Posts props={props} />) : null : null}
-                    {token ? Frinds2 ? frindList.map((props) => <Frinds props={props} />) : null : null}
+                    {token ? Frinds2 ? frindList.map((props) => <Frinds props={props} frinds1={frinds1} />) : null : null}
                     {token ? Photos2 ? <Photos /> : null : null}
 
 

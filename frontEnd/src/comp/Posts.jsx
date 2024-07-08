@@ -6,10 +6,16 @@ import { FcLike } from "react-icons/fc";
 import { FaRegFaceKissWinkHeart } from "react-icons/fa6";
 import WritePost from './WritePost';
 import EditPost from './EditPost';
+import { jwtDecode } from 'jwt-decode'
+
 
 
 const Posts = ({ props }) => {
+
     const token = localStorage.getItem("token");
+    
+    const [userImg, setuserImg] = useState("profile1.png")
+
     const [Post, setPost] = useState(true)
     const [istoken, setistoken] = useState(token)
     const [newPost, setNewPost] = useState(false)
@@ -47,6 +53,7 @@ const Posts = ({ props }) => {
             if (data) {
                 console.log(data);
                 alert(data)
+                window.location.reload()
 
             }
         } catch (error) {
@@ -56,7 +63,18 @@ const Posts = ({ props }) => {
 
     }
 
-
+    
+    useEffect(() => {
+        if (token) {
+          
+          
+          if(jwtDecode(token).user.imguser){
+          setuserImg(jwtDecode(token).user.imguser);}
+        }
+        
+    
+    
+      }, [token]);
 
 
 
@@ -65,7 +83,7 @@ const Posts = ({ props }) => {
             <div className='box_t_f_1'>
                 <div className='row'>
                     <div className='col-3 img1'>
-                        <img src="profile1.png" />
+                        <img src={userImg} />
                     </div>
                     <div className='col-4 mt-4'>
                         <h4>{props.name}</h4>

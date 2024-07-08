@@ -9,7 +9,7 @@ import WritePost from './WritePost';
 const Feed = () => {
   const token = localStorage.getItem('token')
   const [userName, setuserName] = useState("שם משתמש")
-  const [userImg, setuserImg] = useState("")
+  const [userImg, setuserImg] = useState("profile1.png")
   const [Post, setPost] = useState(true)
   const [postsList, setPostsList] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -33,7 +33,7 @@ const Feed = () => {
       .then((data) => {
         setPostsList(data)
         setIsLoading(false)
-        console.log(data);
+        // console.log(data);
         if (!data) {
           setIsLoading(false)
           alert("אין פוסטים")
@@ -50,9 +50,12 @@ const Feed = () => {
   useEffect(() => {
     if (token) {
       setuserName(jwtDecode(token).user.name);
-      setuserImg(jwtDecode(token).user.name.imguser);
+      
+      if(jwtDecode(token).user.imguser){
+      setuserImg(jwtDecode(token).user.imguser);}
     }
-    else { setuserName("שם משתמש") }
+    else { setuserName("שם משתמש")
+     }
 
     setistoken(token)
   }, [token]);
@@ -70,7 +73,8 @@ const Feed = () => {
           <div className='box_f1'></div>
 
           <div className='box_f2'>
-            <img src="profile1.png" />
+            
+            <img src={userImg} />
             <div>
               <h5>{userName}</h5>
             </div>

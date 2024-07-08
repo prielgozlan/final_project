@@ -9,7 +9,7 @@ const { authToken } = require("../auth/authToken.js");
 const { date } = require("joi");
 const { clod } = require("../index.js");
 const fs = require("fs");
-const multer = require('multer'); 
+const multer = require('multer');
 
 
 
@@ -24,7 +24,7 @@ router.post('/upload', authToken, upload.single('file'), async (req, res) => {
     }
 
     const file = req.file;
-    console.log(file);
+    // console.log(file);
 
     // העלאת הקובץ ל-Cloudinary
     const uploadResult = await clod(file.buffer);
@@ -42,10 +42,17 @@ router.post('/upload', authToken, upload.single('file'), async (req, res) => {
     if (!updatedUser) {
       return res.status(404).json({ error: 'משתמש לא נמצא' });
     }
+    // console.log(req.tokenData.user.name);
+    let user = await UserModel.findOne({ _id: req.tokenData.user._id}).select('+pass');
+    console.log(user);
+  
+    let newtoken = gettoken(user);
+
 
     res.status(200).json({
       message: "התמונה הועלתה ועודכנה בהצלחה",
       user: uploadResult,
+      token: newtoken
     });
   } catch (error) {
     console.error('שגיאה בהעלאת הקובץ:', error);
@@ -82,12 +89,13 @@ router.post("/logup", async (req, res) => {
 
 
 router.post("/login", async (req, res) => {
- let validBody = validLogin(req.body);
+  let validBody = validLogin(req.body);
   if (validBody.error) {
     return res.status(400).json(validBody.error.details);
   }
   // נבדוק אם המייל שנשלח בבאדי קיים במסד נתונים
   let user = await UserModel.findOne({ name: req.body.name }).select('+pass');
+  console.log(user);
   if (!user) {
     return res.status(401).json({ msg: "User not found" });
   }
@@ -107,6 +115,17 @@ router.get("/", authToken, async (req, res) => {
   let user = await UserModel.findOne({ id: req.tokenData._id }, { pass: 0 });
   res.json(user)
 })
+
+router.get("/img/:name", async (req, res) => {
+  const idParams = req.params.name;
+  // console.log(idParams);
+
+  let user = await UserModel.findOne({name:idParams});
+  console.log(user);
+  res.json(user)
+})
+
+
 router.get("/search", async (req, res) => {
   let user = await UserModel.find({});
   res.json(user)
@@ -128,7 +147,7 @@ router.post("/addFrind", authToken, async (req, res) => {
     res.json("אתה חבר כבר");
   }
 })
-router.post("/getfraind",authToken,async(req,res)=>{
+router.post("/getfraind", authToken, async (req, res) => {
   let getfraind = req.tokenData.user;
   let userData = await UserModel.findById(getfraind);
   let friendIds = userData.friends;
@@ -142,10 +161,10 @@ router.delete("/:delfrand", authToken, async (req, res) => {
 
     // מצא את המשתמש לפי מזהה
     let user = await UserModel.findById(userId);
-    
-   
 
- 
+
+
+
 
     // מצא את האינדקס של החבר במערך החברים
     const index = user.friends.indexOf(friendId);

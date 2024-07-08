@@ -1,6 +1,6 @@
 import React from 'react'
 import "../Css_for_comp/Frinds.css"
-const Frinds = ({props}) => {
+const Frinds = ({props ,frinds1}) => {
 
     const deleteFrind = async()=>{
         const myHeaders = new Headers();
@@ -25,6 +25,7 @@ const Frinds = ({props}) => {
             if (data) {
                 console.log(data);
                 alert("מחיקה הצליחה")
+                frinds1()
             
             }
         } catch (error) {

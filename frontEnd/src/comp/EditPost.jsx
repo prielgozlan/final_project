@@ -3,7 +3,9 @@ import { useRef } from 'react';
 import {useNavigate} from 'react-router-dom'
 import "../Css_for_comp/EditPost.css"
 
+
 const EditPost = ({ hendlePost2 , setNewPost ,props}) => {
+   
     const navigate = useNavigate()
     const textPost = useRef()
     const exit =()=>{
@@ -45,7 +47,6 @@ const EditPost = ({ hendlePost2 , setNewPost ,props}) => {
             console.error("Error:", error);
             alert(`שגיאה בשליחת הפוסט ${error.message}`);
         }
-
 
 
 

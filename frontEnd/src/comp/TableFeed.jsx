@@ -3,9 +3,30 @@ import "../Css_for_comp/TableFeed.css"
 import { AiFillLike} from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import { FaRegFaceKissWinkHeart } from "react-icons/fa6";
-
+import { useState, useEffect } from 'react'
 
 const TableFeed = ({setTokem , pros}) => {
+
+    const [userImg, setuserImg] = useState("profile1.png")
+
+const ImgFind = async()=>{
+    
+    try{
+    const res = await fetch(`http://localhost:3000/users/img/${pros.name}`)
+    const data = await res.json();
+    if(data.imguser){
+        console.log(data);
+        setuserImg(data.imguser);
+    }
+    else{
+        setuserImg("profile1.png")
+    }
+}
+    catch(error){
+        console.error(error)
+    }
+
+}
 
 const newfrinds = async()=>{
     const myHeaders = new Headers();
@@ -41,6 +62,10 @@ const newfrinds = async()=>{
 
 
 }
+useEffect(() => {
+    ImgFind()
+ }, [pros._id]
+)
 
 
 return (
@@ -49,7 +74,7 @@ return (
                 <div className='row'>
                     <div className='col-4 img1'>
                         {/* <img src={pros.img} /> */}
-                        <img src="profile1.png" />
+                        <img src={userImg} />
                     </div>
                     <div className='col-5 mt-4'>
                         <h4>{pros.name}</h4>

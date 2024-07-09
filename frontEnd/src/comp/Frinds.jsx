@@ -17,7 +17,7 @@ const Frinds = ({props ,frinds1}) => {
     
         try {
             const res = await fetch(
-                `http://localhost:3000/users/${props._id}`,
+                `https://naies.onrender.com/users/${props._id}`,
                 requestOptions
             );
             const data = await res.json();

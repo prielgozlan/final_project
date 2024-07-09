@@ -79,7 +79,7 @@ const Profile1 = () => {
 
         try {
             const res = await fetch(
-                "http://localhost:3000/users/getfraind",
+                "https://naies.onrender.com/users/getfraind",
                 requestOptions
             );
             const data = await res.json();
@@ -112,7 +112,7 @@ const Profile1 = () => {
 
         try {
             const res = await fetch(
-                "http://localhost:3000/posts/idget",
+                "https://naies.onrender.com/posts/idget",
                 requestOptions
             );
             const data = await res.json();
@@ -157,7 +157,7 @@ const Profile1 = () => {
 
         try {
             // שליחת בקשת POST לשרת עם הקובץ
-            const response = await fetch('http://localhost:3000/users/upload', {
+            const response = await fetch('https://naies.onrender.com/users/upload', {
                 method: 'POST',
                 body: formData,
                 headers: myHeaders

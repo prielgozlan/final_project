@@ -12,7 +12,7 @@ const TableFeed = ({setTokem , pros}) => {
 const ImgFind = async()=>{
     
     try{
-    const res = await fetch(`http://localhost:3000/users/img/${pros.name}`)
+    const res = await fetch(`https://naies.onrender.com/users/img/${pros.name}`)
     const data = await res.json();
     if(data.imguser){
         console.log(data);

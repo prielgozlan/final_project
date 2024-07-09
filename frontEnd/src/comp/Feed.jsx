@@ -28,7 +28,7 @@ const Feed = () => {
 
   const postAll = () => {
     setIsLoading(true)
-    fetch("http://localhost:3000/posts")
+    fetch("https://naies.onrender.com/posts")
       .then(res => res.json())
       .then((data) => {
         setPostsList(data)

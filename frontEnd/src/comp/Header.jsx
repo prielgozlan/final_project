@@ -26,7 +26,7 @@ const Header = ({ props,propsChack }) => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/users/search`
+        `https://naies.onrender.com/users/search`
         
       );
       const data = await res.json();

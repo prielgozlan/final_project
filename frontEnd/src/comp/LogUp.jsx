@@ -120,7 +120,7 @@ const LogUp = ({ props }) => {
 
             try {
                 const res = await fetch(
-                    "http://localhost:3000/users/logup",
+                    "https://naies.onrender.com/users/logup",
                     requestOptions,
                     
                 );

@@ -46,7 +46,7 @@ const Posts = ({ props }) => {
 
         try {
             const res = await fetch(
-                `http://localhost:3000/posts/${props._id}`,
+                `https://naies.onrender.com/posts/${props._id}`,
                 requestOptions
             );
             const data = await res.json();

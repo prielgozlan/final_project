@@ -28,7 +28,7 @@ const navigate = useNavigate()
 
         try {
             const res = await fetch(
-                "http://localhost:3000/posts",
+                "https://naies.onrender.com/posts",
                 requestOptions
             );
             const data = await res.json();

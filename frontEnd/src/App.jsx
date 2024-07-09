@@ -14,8 +14,8 @@ import WritePost from './comp/WritePost'
 import FileUpload from './comp/FileUpload '
 import Search from './comp/Search'
 
-
 function App() {
+  
   const token = localStorage.getItem('token')
   const [isAuthenticated, setIsAuthenticated] = useState(token != null)
   const [chackSearch, setchackSearch] = useState(true)

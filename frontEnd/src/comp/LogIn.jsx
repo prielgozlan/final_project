@@ -23,7 +23,7 @@ const LogIn = ({props}) => {
       body: raw
     };
 
-    const res = await fetch("http://localhost:3000/users/login", requestOptions)
+    const res = await fetch("https://naies.onrender.com/users/login", requestOptions)
     const data = await res.json()
     console.log(data);
     if (data.token){

@@ -26,7 +26,7 @@ const FileUpload = () => {
 
     try {
       // שליחת בקשת POST לשרת עם הקובץ
-      const response = await fetch('http://localhost:3000/users/upload', {
+      const response = await fetch('https://naies.onrender.com/users/upload', {
         method: 'POST',
         body: formData
       });

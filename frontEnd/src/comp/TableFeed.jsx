@@ -29,6 +29,7 @@ const ImgFind = async()=>{
 }
 
 const newfrinds = async()=>{
+    console.log({...pros});
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);

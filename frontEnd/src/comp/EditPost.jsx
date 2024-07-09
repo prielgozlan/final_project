@@ -65,7 +65,7 @@ const EditPost = ({ hendlePost2 , setNewPost ,props}) => {
                     </div>
                     <br />
                     <div>
-                    <textarea  type="text" ref={textPost} className='box_E_3' placeholder='כתוב פוסט כאן'></textarea>
+                    <textarea  type="text" ref={textPost} className='box_E_3'>{props.content}</textarea>
                     </div>
                     <br />
                     <br />

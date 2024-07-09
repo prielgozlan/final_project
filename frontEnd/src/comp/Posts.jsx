@@ -27,6 +27,7 @@ const Posts = ({ props }) => {
     const hendlePost2 = () => {
 
         setPost(true)
+        window.location.reload()
     }
 
 

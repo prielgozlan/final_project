@@ -1,6 +1,9 @@
 const { METHODS } = require("http");
-const {mongoose} = require("./db/mongoConect");
 const {routesInit} = require("./routs/confet_raauts.js");
+require('dotenv').config()
+require("./db/mongoConect");
+
+
 const cors = require("cors")
 
 const express = require("express");

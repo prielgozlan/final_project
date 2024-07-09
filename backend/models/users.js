@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
 exports.UserModel = mongoose.model("users", userSchema);
 
 exports.gettoken = (user) => {
-  let token = jwt.sign({ user }, "yeudayakter", { expiresIn: "60day" });
+  let token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: "60day" });
   return token;
 };
 

@@ -134,18 +134,17 @@ const Profile1 = () => {
 
 
     // פונקציה לטיפול בקבלת קבצים בגרירה ושחרור
-    const onDrop = (acceptedFiles) => {
+    const onDrop = async(acceptedFiles) => {
         // שמירת הקובץ שנבחר במצב
-        setFile(acceptedFiles[0]);
-        console.log(file);
-        handleClick()
+        const  saveFile = await acceptedFiles[0]
+        handleClick(saveFile)
     };
 
     // שימוש ב-hook של react-dropzone לטיפול בגרירה ושחרור
     const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
 
-    const handleClick = async () => {
+    const handleClick = async (file) => {
 
         // יצירת אובייקט FormData והוספת הקובץ אליו
         const formData = new FormData();
@@ -171,7 +170,7 @@ const Profile1 = () => {
             localStorage.setItem("token", token)
 
 
-            // window.location.reload(); 
+            window.location.reload(); 
 
             
         

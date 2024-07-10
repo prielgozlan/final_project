@@ -47,7 +47,7 @@ const newfrinds = async()=>{
 
     try {
         const res = await fetch(
-            "http://localhost:3000/users/addFrind",
+            "https://naies.onrender.com/users/addFrind",
             requestOptions
         );
         const data = await res.json();

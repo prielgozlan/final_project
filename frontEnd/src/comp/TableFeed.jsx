@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react'
 const TableFeed = ({setTokem , pros}) => {
 
     const [userImg, setuserImg] = useState("profile1.png")
+    const [Smiley, setSmiley] = useState(0)
 
 const ImgFind = async()=>{
     
@@ -69,13 +70,57 @@ useEffect(() => {
 )
 
 
+const sandLike = async(like)=>{
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");    
+
+    const raw = JSON.stringify({
+        idPostw: pros._id,
+        name:pros.name,
+        likes:like
+
+        
+    });
+
+    const requestOptions = {
+        
+
+
+        method: "PUT",
+        headers: myHeaders,
+        body: raw
+    };
+
+    try {
+        const res = await fetch(
+            "https://naies.onrender.com/idPost/likes",
+            requestOptions
+        );
+        if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        const data = await res.json();
+        console.log(data);
+        if (data) {
+        setSmiley(data.likes)
+        
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        // alert(`שגיאה בשליחת הפוסט ${error.message}`);
+    }
+
+
+}
+
+
 return (
         <div className='box_t_f'>
             <div className='box_t_f_1'>
                 <div className='row'>
                     <div className='col-4 img1'>
                         {/* <img src={pros.img} /> */}
-                        <img src={userImg} />
+                        <img src={userImg}/>
                     </div>
                     <div className='col-5 mt-4'>
                         <h4>{pros.name}</h4>
@@ -88,8 +133,8 @@ return (
                 <p>{pros.content}</p>
                 <div className='row'>
                 <div className='box_icon col-2'>
-                    <button><FcLike/></button>
-                    <p>0</p>
+                    <button onClick={sandLike("Smiley")}><FcLike/></button>
+                    <p>{Smiley}</p>
                 </div>
                 <div className='box_icon col-2'>
                     <button><AiFillLike/></button>

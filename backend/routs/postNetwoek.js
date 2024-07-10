@@ -9,11 +9,16 @@ router.get("/", async (req, res) => {
   let data = await PostModel.find({});
   res.json(data);
 });
-router.post("/idPost/lick", authToken , async(req,res)=>{
-  let WhatALick = req.body.lick;
+
+
+router.put("/idPost/likes", authToken , async(req,res)=>{
+  let WhatALick = req.body.likes;
   let idPost = req.body.idPostw;
-  let user = req.tokenData.user.name;
+  let user = req.body.name;
+
+
    let post = await PostModel.findById(idPost)
+
   if (WhatALick===Smiley){post.like1.push(user);
     await post.save(); 
     res.json({ likes: post.like1.length }); 
@@ -28,7 +33,11 @@ router.post("/idPost/lick", authToken , async(req,res)=>{
     res.json({ likes: post.like3.length }); 
   }
 })
-router.post("/", authToken, async (req, res) => {
+
+
+
+
+router.put("/", authToken, async (req, res) => {
   let valdiateBody = validPost(req.body);
   console.log(valdiateBody);
   if (valdiateBody.error) {

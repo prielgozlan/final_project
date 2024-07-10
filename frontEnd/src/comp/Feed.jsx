@@ -113,7 +113,7 @@ const Feed = () => {
         </div>
 
         <div className='col-2 box_f3'>
-          <img src='mego.jpg' />
+          <a href='https://mego.org.il/' target="_blank"><img src='mego.jpg' /></a>
 
         </div>
 

@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 });
 
 
-router.put("/idPost/likes", authToken , async(req,res)=>{
+router.put("/idPost/likes" , async(req,res)=>{
   let WhatALick = req.body.likes;
   let idPost = req.body.idPostw;
   let user = req.body.name;

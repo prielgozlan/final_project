@@ -93,7 +93,7 @@ const sandLike = async(like)=>{
 
     try {
         const res = await fetch(
-            "https://naies.onrender.com/idPost/likes",
+            "https://naies.onrender.com/posts/idPost/likes",
             requestOptions
         );
         if (!res.ok) {

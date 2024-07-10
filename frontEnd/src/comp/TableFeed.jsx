@@ -133,7 +133,7 @@ return (
                 <p>{pros.content}</p>
                 <div className='row'>
                 <div className='box_icon col-2'>
-                    <button onClick={sandLike("Smiley")}><FcLike/></button>
+                    <button onClick={()=>{sandLike("Smiley")}}><FcLike/></button>
                     <p>{Smiley}</p>
                 </div>
                 <div className='box_icon col-2'>

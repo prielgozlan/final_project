@@ -31,7 +31,7 @@ const navigate = useNavigate()
 
         try {
             const res = await fetch(
-                `${apiUrl}/posts`,
+                `${import.meta.env.VITE_API_URL}/posts`,
                 requestOptions
             );
             const data = await res.json();

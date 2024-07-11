@@ -3,7 +3,10 @@ import "../Css_for_comp/WritePost.css"
 import { useRef } from 'react';
 import {useNavigate} from 'react-router-dom'
 const WritePost = ({ hendlePost2 , setNewPost}) => {
-    
+
+    const apiUrl = import.meta.env.VITE_API_URL;
+
+
 const navigate = useNavigate()
     const textPost = useRef()
     const exit =()=>{
@@ -28,7 +31,7 @@ const navigate = useNavigate()
 
         try {
             const res = await fetch(
-                "https://naies.onrender.com/posts",
+                `${apiUrl}/posts`,
                 requestOptions
             );
             const data = await res.json();

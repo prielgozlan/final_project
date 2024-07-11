@@ -71,7 +71,6 @@ useEffect(() => {
 
 
 const sandLike = async(like)=>{
-    console.log(pros._id);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");    
 
@@ -87,7 +86,7 @@ const sandLike = async(like)=>{
         
 
 
-        method: "POST",
+        method: "PUT",
         headers: myHeaders,
         body: raw
     };

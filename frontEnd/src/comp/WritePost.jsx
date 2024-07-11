@@ -32,9 +32,13 @@ const navigate = useNavigate()
         try {
             
             const res = await fetch(
-                `${import.meta.env.VITE_API_URL}/posts`,
+                "https://naies.onrender.com/posts",
                 requestOptions
             );
+            // const res = await fetch(
+            //     `${import.meta.env.VITE_API_URL}/posts`,
+            //     requestOptions
+            // );
             const data = await res.json();
             console.log(data);
             if (data) {

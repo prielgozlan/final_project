@@ -2,7 +2,7 @@ import React from 'react'
 import { useRef } from 'react';
 import {useNavigate} from 'react-router-dom'
 import "../Css_for_comp/EditPost.css"
-
+import rootUrl from '../config/urlConfig'
 
 const EditPost = ({ hendlePost2 , setNewPost ,props}) => {
    
@@ -31,7 +31,7 @@ const EditPost = ({ hendlePost2 , setNewPost ,props}) => {
         
         try {
             const res = await fetch(
-                `https://naies.onrender.com/posts/${props._id}`,
+                `${rootUrl}/posts/${props._id}`,
                 requestOptions
             );
             const data = await res.json();

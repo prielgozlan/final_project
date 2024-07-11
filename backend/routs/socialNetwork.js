@@ -16,7 +16,6 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-
 router.post('/upload', authToken, upload.single('file'), async (req, res) => {
   try {
     if (!req.file) {
@@ -86,6 +85,7 @@ router.post("/logup", async (req, res) => {
   }
 
 });
+
 
 
 router.post("/login", async (req, res) => {

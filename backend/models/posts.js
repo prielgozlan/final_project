@@ -6,9 +6,9 @@ const postSchema = new mongoose.Schema({
     name:String,
     content:String,
     createdAt: { type: String, default: () => moment().format('DD/MM/YYYY') },
-    like1:Array,
-    like2:Array,
-    like3:Array,
+    like1:Number,
+    like2:Number,
+    like3:Number,
     user_id:String,
     img:String
     

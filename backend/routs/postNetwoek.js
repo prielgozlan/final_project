@@ -10,34 +10,7 @@ router.get("/", async (req, res) => {
   res.json(data);
 });
 
-
-router.put("/idPost/likes", authToken , async(req,res)=>{
-  let WhatALick = req.body.likes;
-  let idPost = req.body.idPostw;
-  let user = req.body.name;
-
-
-   let post = await PostModel.findById(idPost)
-
-  if (WhatALick===Smiley){post.like1.push(user);
-    await post.save(); 
-    res.json({ likes: post.like1.length }); 
-  }
- 
- else if (WhatALick===Hand){post.like2.push(user);
-    await post.save(); 
-    res.json({ likes: post.like2.length }); 
-  }
-  else if(WhatALick===heart){post.like3.push(user);
-    await post.save(); 
-    res.json({ likes: post.like3.length }); 
-  }
-})
-
-
-
-
-router.put("/", authToken, async (req, res) => {
+router.post("/", authToken, async (req, res) => {
   let valdiateBody = validPost(req.body);
   console.log(valdiateBody);
   if (valdiateBody.error) {

@@ -9,7 +9,7 @@ import rootUrl from '../config/urlConfig'
 const TableFeed = ({setTokem , pros}) => {
 
     const [userImg, setuserImg] = useState("profile1.png")
-    const [Smiley, setSmiley] = useState(0)
+    // const [Smiley, setSmiley] = useState(0)
 
 const ImgFind = async()=>{
     
@@ -69,50 +69,81 @@ useEffect(() => {
     ImgFind()
  }, [pros._id]
 )
-
-
-const sandLike = async(like)=>{
+const likes = async(typeLike)=>{
+    
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");    
-
-    const raw = JSON.stringify({
-        idPostw: pros._id,
-        name:pros.name,
-        likes:like
-
-        
-    });
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
 
     const requestOptions = {
-        
-
-
         method: "PUT",
         headers: myHeaders,
-        body: raw
-    };
+        body: JSON.stringify({ postId: pros._id, typeLike })        }
 
-    try {
-        const res = await fetch(
-            `${rootUrl}/posts/idPost/likes`,
-            requestOptions
-        );
-        if (!res.ok) {
-            throw new Error(`HTTP error! Status: ${res.status}`);
+        try {
+            const res = await fetch(
+                `${rootUrl}/posts/idPost/likes`,
+                
+                requestOptions
+            );
+            const data = await res.json();
+            console.log(data);
+            if (data) {
+                console.log(data);
+                window.location.reload(); 
+
+
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert(`שגיאה בשליחת הפוסט ${error.message}`);
         }
-        const data = await res.json();
-        console.log(data);
-        if (data) {
-        setSmiley(data.likes)
-        
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        // alert(`שגיאה בשליחת הפוסט ${error.message}`);
-    }
 
 
 }
+
+// const sandLike = async(like)=>{
+//     const myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");    
+
+//     const raw = JSON.stringify({
+//         idPostw: pros._id,
+//         name:pros.name,
+//         likes:like
+
+        
+//     });
+
+//     const requestOptions = {
+        
+
+
+//         method: "PUT",
+//         headers: myHeaders,
+//         body: raw
+//     };
+
+//     try {
+//         const res = await fetch(
+//             `${rootUrl}/posts/idPost/likes`,
+//             requestOptions
+//         );
+//         if (!res.ok) {
+//             throw new Error(`HTTP error! Status: ${res.status}`);
+//         }
+//         const data = await res.json();
+//         console.log(data);
+//         if (data) {
+//         setSmiley(data.likes)
+        
+//         }
+//     } catch (error) {
+//         console.error("Error:", error);
+//         // alert(`שגיאה בשליחת הפוסט ${error.message}`);
+//     }
+
+
+// }
 
 
 return (
@@ -134,16 +165,16 @@ return (
                 <p>{pros.content}</p>
                 <div className='row'>
                 <div className='box_icon col-2'>
-                    <button onClick={()=>{sandLike("Smiley")}}><FcLike/></button>
-                    <p>{Smiley}</p>
+                    <button onClick={()=>{likes("like1")}}><FcLike/></button>
+                    <p>{pros.like1.length}</p>
                 </div>
                 <div className='box_icon col-2'>
-                    <button><AiFillLike/></button>
-                    <p>0</p>
+                    <button onClick={()=>{likes("like2")}}><AiFillLike/></button>
+                    <p>{pros.like2.length}</p>
                 </div>
                 <div className='box_icon col-2'>
-                    <button><FaRegFaceKissWinkHeart/></button>
-                    <p>0</p>
+                    <button onClick={()=>{likes("like3")}}><FaRegFaceKissWinkHeart/></button>
+                    <p>{pros.like3.length}</p>
                 </div>
                 </div>
 

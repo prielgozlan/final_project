@@ -81,35 +81,7 @@ const Posts = ({ props }) => {
 
 
 
-    const likes = async(typeLike)=>{
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
-
-        const requestOptions = {
-            method: "PUT",
-            headers: myHeaders,
-            body: JSON.stringify({ postId: props._id, typeLike })        }
-
-            try {
-                const res = await fetch(
-                    `${rootUrl}/posts/idPost/likes`,
-                    
-                    requestOptions
-                );
-                const data = await res.json();
-                console.log(data);
-                if (data) {
-                    console.log(data);
     
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert(`שגיאה בשליחת הפוסט ${error.message}`);
-            }
-    
-
-    }
 
 
     return (
@@ -134,16 +106,16 @@ const Posts = ({ props }) => {
                 <p>{props.content}</p>
                 <div className='row'>
                     <div className='box_icon col-2'>
-                        <button onClick={()=>{likes("like1")}}><FcLike /></button>
-                        <p>{props.like1}</p>
+                        <button><FcLike /></button>
+                        <p>{props.like1.length}</p>
                     </div>
                     <div className='box_icon col-2'>
                         <button><AiFillLike /></button>
-                        <p>{props.like2}</p>
+                        <p>{props.like2.length}</p>
                     </div>
                     <div className='box_icon col-2'>
                         <button><FaRegFaceKissWinkHeart /></button>
-                        <p>{props.like3}</p>
+                        <p>{props.like3.length}</p>
                     </div>
                 </div>
 

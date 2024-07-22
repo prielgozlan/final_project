@@ -9,9 +9,7 @@ import rootUrl from '../config/urlConfig'
 const TableFeed = ({setTokem , pros}) => {
 
     const [userImg, setuserImg] = useState("profile1.png")
-    const [like1, setLike1] = useState(0)
-    const [like2, setLike2] = useState(0)
-    const [like3, setLike3] = useState(0)
+    const [Smiley, setSmiley] = useState(0)
 
 const ImgFind = async()=>{
     
@@ -71,13 +69,6 @@ useEffect(() => {
     ImgFind()
  }, [pros._id]
 )
-useEffect(() => {
-    likes("like1")
-    likes("like2")
-    likes("like3")
-
- }, []
-)
 const likes = async(typeLike)=>{
     
     const myHeaders = new Headers();
@@ -96,18 +87,9 @@ const likes = async(typeLike)=>{
                 requestOptions
             );
             const data = await res.json();
-            
+            console.log(data);
             if (data) {
                 console.log(data);
-                if(typeLike === "like1"){
-                    setLike1(data)
-                }
-                else if(typeLike === "like2"){
-                    setLike2(data)
-                }
-                else if(typeLike === "like3"){
-                    setLike3(data)
-                }
                  
 
 
@@ -185,15 +167,15 @@ return (
                 <div className='row'>
                 <div className='box_icon col-2'>
                     <button onClick={()=>{likes("like1")}}><FcLike/></button>
-                    <p>{like1}</p>
+                    <p>{pros.like1.length}</p>
                 </div>
                 <div className='box_icon col-2'>
                     <button onClick={()=>{likes("like2")}}><AiFillLike/></button>
-                    <p>{like2}</p>
+                    <p>{pros.like2.length}</p>
                 </div>
                 <div className='box_icon col-2'>
                     <button onClick={()=>{likes("like3")}}><FaRegFaceKissWinkHeart/></button>
-                    <p>{like3}</p>
+                    <p>{pros.like3.length}</p>
                 </div>
                 </div>
 

@@ -101,8 +101,8 @@ const Posts = ({ props }) => {
     
                 }
             } catch (error) {
-                console.error("Error:", error);
-                alert(`שגיאה בשליחת הפוסט ${error.message}`);
+                console.error("Error:", "priel");
+                // alert(`שגיאה בשליחת הפוסט ${error.message}`);
             }
     
 

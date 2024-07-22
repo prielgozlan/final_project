@@ -48,20 +48,29 @@ router.post("/idget", authToken, async (req, res) => {
 
 router.post("/likes", authToken, async (req, res) => {
   try{
-  let idget = req.tokenData.user._id;
-  let tableLikes = req.body;
-  let post = await PostModel.find({}, {tableLikes:1 ,_id:0});
+  let userId = req.tokenData.user._id;
+  let postId = req.body.postId;
+  let tableLikes = req.body.typeLike;
+
+
+  let post = await PostModel.findOne({ _id: postId});
+  if (!post) {
+    return res.status(404).json({ error: "Post not found" });
+  }
+  let likesArray = post[typeLike];
   
-  if (!post.includes(idget)){
-    post.push(idget);
+  if (!likesArray.includes(userId)){
+    likesArray.push(userId);
   }
   else {
-    post.pop(idget);
-  }
-  await PostModel.updateOne({}, {tableLikes: post});
+    likesArray = likesArray.filter(id => id.toString() !== userId.toString());  }
 
-  res.json(post.length);
-  }catch(err){
+  post[typeLike] = likesArray;
+  await post.save();
+
+  res.json(likesArray.length);
+  }
+  catch(err){
     console.log(err);
     res.json(err);
   }

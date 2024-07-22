@@ -87,7 +87,7 @@ const Posts = ({ props }) => {
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
-            body: typeLike}
+            body: JSON.stringify({ postId: props._id, typeLike })        }
 
             try {
                 const res = await fetch(
@@ -101,8 +101,8 @@ const Posts = ({ props }) => {
     
                 }
             } catch (error) {
-                console.error("Error:", "priel");
-                // alert(`שגיאה בשליחת הפוסט ${error.message}`);
+                console.error("Error:", error);
+                alert(`שגיאה בשליחת הפוסט ${error.message}`);
             }
     
 

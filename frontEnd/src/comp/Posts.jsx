@@ -85,7 +85,7 @@ const Posts = ({ props }) => {
         myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
 
         const requestOptions = {
-            method: "POST",
+            method: "PUT",
             headers: myHeaders,
             body: JSON.stringify({ postId: props._id, typeLike })        }
 

@@ -46,7 +46,7 @@ router.post("/idget", authToken, async (req, res) => {
 });
 
 
-router.post("/idPost/likes", authToken, async (req, res) => {
+router.put("/idPost/likes", authToken, async (req, res) => {
   try{
   let userId = req.tokenData.user._id;
   let postId = req.body.postId;

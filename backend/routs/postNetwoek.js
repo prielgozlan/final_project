@@ -50,7 +50,7 @@ router.post("/likes", authToken, async (req, res) => {
   try{
   let userId = req.tokenData.user._id;
   let postId = req.body.postId;
-  let tableLikes = req.body.typeLike;
+  let typeLike = req.body.typeLike;
 
 
   let post = await PostModel.findOne({ _id: postId});

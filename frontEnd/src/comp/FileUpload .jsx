@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import "../Css_for_comp/FileUpload.css"
+import rootUrl from '../config/urlConfig'
+
+
+
 const FileUpload = () => {
   // יצירת מצב לאחסון קובץ שנבחר
   const [file, setFile] = useState(null);
@@ -26,7 +30,7 @@ const FileUpload = () => {
 
     try {
       // שליחת בקשת POST לשרת עם הקובץ
-      const response = await fetch('https://naies.onrender.com/users/upload', {
+      const response = await fetch(`${rootUrl}/users/upload`, {
         method: 'POST',
         body: formData
       });

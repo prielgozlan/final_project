@@ -2,6 +2,8 @@ import React from 'react'
 import "../Css_for_comp/WritePost.css"
 import { useRef } from 'react';
 import {useNavigate} from 'react-router-dom'
+import rootUrl from '../config/urlConfig'
+
 const WritePost = ({ hendlePost2 , setNewPost}) => {
     
 const navigate = useNavigate()
@@ -28,7 +30,7 @@ const navigate = useNavigate()
 
         try {
             const res = await fetch(
-                "https://naies.onrender.com/posts",
+                `${rootUrl}/posts`,
                 requestOptions
             );
             const data = await res.json();

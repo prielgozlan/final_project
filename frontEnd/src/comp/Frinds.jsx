@@ -1,5 +1,7 @@
 import React from 'react'
 import "../Css_for_comp/Frinds.css"
+import rootUrl from '../config/urlConfig'
+
 const Frinds = ({props ,frinds1}) => {
 
     const deleteFrind = async()=>{
@@ -17,7 +19,7 @@ const Frinds = ({props ,frinds1}) => {
     
         try {
             const res = await fetch(
-                `https://naies.onrender.com/users/${props._id}`,
+                `${rootUrl}/users/${props._id}`,
                 requestOptions
             );
             const data = await res.json();

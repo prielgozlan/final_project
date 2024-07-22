@@ -4,6 +4,7 @@ import { AiFillLike} from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import { FaRegFaceKissWinkHeart } from "react-icons/fa6";
 import { useState, useEffect } from 'react'
+import rootUrl from '../config/urlConfig'
 
 const TableFeed = ({setTokem , pros}) => {
 
@@ -13,7 +14,7 @@ const TableFeed = ({setTokem , pros}) => {
 const ImgFind = async()=>{
     
     try{
-    const res = await fetch(`https://naies.onrender.com/users/img/${pros.name}`)
+    const res = await fetch(`${rootUrl}/users/img/${pros.name}`)
     const data = await res.json();
     if(data.imguser){
         console.log(data);
@@ -48,7 +49,7 @@ const newfrinds = async()=>{
 
     try {
         const res = await fetch(
-            "https://naies.onrender.com/users/addFrind",
+            `${rootUrl}/users/addFrind`,
             requestOptions
         );
         const data = await res.json();
@@ -93,7 +94,7 @@ const sandLike = async(like)=>{
 
     try {
         const res = await fetch(
-            "https://naies.onrender.com/posts/idPost/likes",
+            `${rootUrl}/posts/idPost/likes`,
             requestOptions
         );
         if (!res.ok) {

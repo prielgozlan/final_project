@@ -5,6 +5,7 @@ import { FaPlus } from "react-icons/fa";
 import { jwtDecode } from 'jwt-decode'
 import { Link } from "react-router-dom"
 import WritePost from './WritePost';
+import rootUrl from '../config/urlConfig'
 
 const Feed = () => {
   const token = localStorage.getItem('token')
@@ -28,7 +29,7 @@ const Feed = () => {
 
   const postAll = () => {
     setIsLoading(true)
-    fetch("https://naies.onrender.com/posts")
+    fetch(`${rootUrl}/posts`)
       .then(res => res.json())
       .then((data) => {
         setPostsList(data)

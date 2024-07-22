@@ -7,6 +7,8 @@ import { FaRegFaceKissWinkHeart } from "react-icons/fa6";
 import WritePost from './WritePost';
 import EditPost from './EditPost';
 import { jwtDecode } from 'jwt-decode'
+import rootUrl from '../config/urlConfig'
+
 
 
 
@@ -46,7 +48,7 @@ const Posts = ({ props }) => {
 
         try {
             const res = await fetch(
-                `https://naies.onrender.com/posts/${props._id}`,
+                `${rootUrl}/posts/${props._id}`,
                 requestOptions
             );
             const data = await res.json();
@@ -91,7 +93,7 @@ const Posts = ({ props }) => {
 
             try {
                 const res = await fetch(
-                    "https://naies.onrender.com/posts/idPost/likes",
+                    `${rootUrl}/posts/idPost/likes`,
                     
                     requestOptions
                 );
@@ -133,15 +135,15 @@ const Posts = ({ props }) => {
                 <div className='row'>
                     <div className='box_icon col-2'>
                         <button onClick={()=>{likes("like1")}}><FcLike /></button>
-                        <p>{props.like1.length}</p>
+                        <p>{props.like1}</p>
                     </div>
                     <div className='box_icon col-2'>
                         <button><AiFillLike /></button>
-                        <p>{props.like2.length}</p>
+                        <p>{props.like2}</p>
                     </div>
                     <div className='box_icon col-2'>
                         <button><FaRegFaceKissWinkHeart /></button>
-                        <p>{props.like3.length}</p>
+                        <p>{props.like3}</p>
                     </div>
                 </div>
 

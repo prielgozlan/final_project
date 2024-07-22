@@ -1,6 +1,8 @@
 import React from 'react'
 import "../Css_for_comp/Search.css"
 import { useNavigate } from 'react-router-dom';
+import rootUrl from '../config/urlConfig'
+
 const Search = ({props}) => {
     const navigate = useNavigate()
 
@@ -24,7 +26,7 @@ const Search = ({props}) => {
     
         try {
             const res = await fetch(
-                "https://naies.onrender.com/users/addFrind",
+                `${rootUrl}/users/addFrind`,
                 requestOptions
             );
             const data = await res.json();

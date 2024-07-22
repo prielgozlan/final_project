@@ -7,6 +7,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
 import { Outlet, Link } from 'react-router-dom'
 import Search from './Search';
+import rootUrl from '../config/urlConfig'
 
 const Header = ({ props,propsChack }) => {
   const navigate = useNavigate()
@@ -26,7 +27,7 @@ const Header = ({ props,propsChack }) => {
 
     try {
       const res = await fetch(
-        `https://naies.onrender.com/users/search`
+        `${rootUrl}/users/search`
         
       );
       const data = await res.json();

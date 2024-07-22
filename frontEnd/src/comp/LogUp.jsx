@@ -3,6 +3,7 @@ import { useRef, useState } from "react"
 import '../Css_for_comp/LogUp.css'
 import { AiFillLike } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
+import rootUrl from '../config/urlConfig'
 
 const LogUp = ({ props }) => {
     const navigate = useNavigate()
@@ -120,7 +121,7 @@ const LogUp = ({ props }) => {
 
             try {
                 const res = await fetch(
-                    "https://naies.onrender.com/users/logup",
+                    `${rootUrl}/users/logup`,
                     requestOptions,
                     
                 );

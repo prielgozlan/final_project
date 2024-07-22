@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import '../Css_for_comp/LogIn.css'
 import { Link, useNavigate } from 'react-router-dom'
+import rootUrl from '../config/urlConfig'
+
 const LogIn = ({props}) => {
 
   const navigate = useNavigate()
@@ -23,7 +25,7 @@ const LogIn = ({props}) => {
       body: raw
     };
 
-    const res = await fetch("https://naies.onrender.com/users/login", requestOptions)
+    const res = await fetch(`${rootUrl}/users/login`, requestOptions)
     const data = await res.json()
     console.log(data);
     if (data.token){

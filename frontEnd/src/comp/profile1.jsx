@@ -4,6 +4,7 @@ import { MdOutlineSettings } from "react-icons/md";
 import { jwtDecode } from 'jwt-decode'
 import { useState, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone';
+import rootUrl from '../config/urlConfig'
 
 
 
@@ -79,7 +80,7 @@ const Profile1 = () => {
 
         try {
             const res = await fetch(
-                "https://naies.onrender.com/users/getfraind",
+                `${rootUrl}/users/getfraind`,
                 requestOptions
             );
             const data = await res.json();
@@ -112,7 +113,7 @@ const Profile1 = () => {
 
         try {
             const res = await fetch(
-                "https://naies.onrender.com/posts/idget",
+                `${rootUrl}/posts/idget`,
                 requestOptions
             );
             const data = await res.json();
@@ -157,7 +158,7 @@ const Profile1 = () => {
 
         try {
             // שליחת בקשת POST לשרת עם הקובץ
-            const response = await fetch('https://naies.onrender.com/users/upload', {
+            const response = await fetch(`${rootUrl}/users/upload`, {
                 method: 'POST',
                 body: formData,
                 headers: myHeaders

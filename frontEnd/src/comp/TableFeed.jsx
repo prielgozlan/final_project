@@ -90,10 +90,11 @@ const likes = async(typeLike)=>{
             console.log(data);
             if (data) {
                 console.log(data);
-                window.location.reload(); 
+                 
 
 
             }
+            window.location.reload();
         } catch (error) {
             console.error("Error:", error);
             alert(`שגיאה בשליחת הפוסט ${error.message}`);

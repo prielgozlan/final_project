@@ -119,7 +119,7 @@ const Profile1 = () => {
             // console.log(data);
             if (data) {
                 setPostsList(data);
-                // console.log(data);
+                console.log(data);
 
             }
         } catch (error) {
@@ -225,8 +225,8 @@ const Profile1 = () => {
             <div className='row'>
                 <div className='col-7 box_p_7'>
 
-                    {token ? Posts2 ? postsList.map((props) => <Posts props={props} />) : null : null}
-                    {token ? Frinds2 ? frindList.map((props) => <Frinds props={props} frinds1={frinds1} />) : null : null}
+                    {token ? Posts2 ? postsList.map((props) => <Posts props={props} />) : "לא מחובר" : null}
+                    {token ? Frinds2 ? frindList.map((props) => <Frinds props={props} frinds1={frinds1} />) : "לא מחובר" : null}
                     {token ? Photos2 ? <Photos /> : null : null}
 
 

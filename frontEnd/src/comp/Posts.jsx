@@ -79,6 +79,36 @@ const Posts = ({ props }) => {
 
 
 
+    const likes = async(typeLike)=>{
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("x-api-key", `${localStorage.getItem("token")}`);
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: typeLike}
+
+            try {
+                const res = await fetch(
+                    "https://naies.onrender.com/posts/likes",
+                    requestOptions
+                );
+                const data = await res.json();
+                console.log(data);
+                if (data) {
+                    console.log(data);
+    
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert(`שגיאה בשליחת הפוסט ${error.message}`);
+            }
+    
+
+    }
+
+
     return (
         <div className='box_t_f'>
             <div className='box_t_f_1'>
@@ -101,16 +131,16 @@ const Posts = ({ props }) => {
                 <p>{props.content}</p>
                 <div className='row'>
                     <div className='box_icon col-2'>
-                        <button><FcLike /></button>
-                        <p>0</p>
+                        <button onClick={()=>{likes("like1")}}><FcLike /></button>
+                        <p>{props.like1}</p>
                     </div>
                     <div className='box_icon col-2'>
                         <button><AiFillLike /></button>
-                        <p>0</p>
+                        <p>{props.like2}</p>
                     </div>
                     <div className='box_icon col-2'>
                         <button><FaRegFaceKissWinkHeart /></button>
-                        <p>0</p>
+                        <p>{props.like3}</p>
                     </div>
                 </div>
 

@@ -45,6 +45,33 @@ router.post("/idget", authToken, async (req, res) => {
   }
 });
 
+
+router.post("/likes", authToken, async (req, res) => {
+  try{
+  let idget = req.tokenData.user._id;
+  let tableLikes = req.body;
+  let post = await PostModel.find({}, {tableLikes:1 ,_id:0});
+  
+  if (!post.includes(idget)){
+    post.push(idget);
+  }
+  else {
+    post.pop(idget);
+  }
+  await PostModel.updateOne({}, {tableLikes: post});
+
+  res.json(post.length);
+  }catch(err){
+    console.log(err);
+    res.json(err);
+  }
+
+
+});
+
+
+
+
 router.delete("/:idDel", authToken, async (req, res) => {
   try {
     let idDel = req.params.idDel;

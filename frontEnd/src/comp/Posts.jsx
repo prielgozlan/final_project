@@ -132,15 +132,15 @@ const Posts = ({ props }) => {
                 <div className='row'>
                     <div className='box_icon col-2'>
                         <button onClick={()=>{likes("like1")}}><FcLike /></button>
-                        <p>{props.like1}</p>
+                        <p>{props.like1.length}</p>
                     </div>
                     <div className='box_icon col-2'>
                         <button><AiFillLike /></button>
-                        <p>{props.like2}</p>
+                        <p>{props.like2.length}</p>
                     </div>
                     <div className='box_icon col-2'>
                         <button><FaRegFaceKissWinkHeart /></button>
-                        <p>{props.like3}</p>
+                        <p>{props.like3.length}</p>
                     </div>
                 </div>
 

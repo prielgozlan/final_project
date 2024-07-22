@@ -46,7 +46,7 @@ router.post("/idget", authToken, async (req, res) => {
 });
 
 
-router.post("/likes", authToken, async (req, res) => {
+router.post("/idPost/likes", authToken, async (req, res) => {
   try{
   let userId = req.tokenData.user._id;
   let postId = req.body.postId;
@@ -54,6 +54,7 @@ router.post("/likes", authToken, async (req, res) => {
 
 
   let post = await PostModel.findOne({ _id: postId});
+  
   if (!post) {
     return res.status(404).json({ error: "Post not found" });
   }

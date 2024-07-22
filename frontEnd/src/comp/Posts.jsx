@@ -91,7 +91,8 @@ const Posts = ({ props }) => {
 
             try {
                 const res = await fetch(
-                    "https://naies.onrender.com/posts/likes",
+                    "https://naies.onrender.com/posts/idPost/likes",
+                    
                     requestOptions
                 );
                 const data = await res.json();

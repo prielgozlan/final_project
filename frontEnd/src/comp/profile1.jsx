@@ -188,7 +188,7 @@ const Profile1 = () => {
     return (
         <div className='container'>
             <div className='box_p_1'>
-                <img className='box_img' src='backgraond.jpeg' />
+                <img className='box_img' src='../../public/backgraond.jpeg' />
                 <button>עריכת תמונת רקיע <FaCamera /></button>
             </div>
             <div className='row'>

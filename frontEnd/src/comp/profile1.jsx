@@ -188,7 +188,7 @@ const Profile1 = () => {
     return (
         <div className='container'>
             <div className='box_p_1'>
-                {/* <img className='box_img' src="backgraond.jpeg" /> */}
+            
                 <button>עריכת תמונת רקיע <FaCamera /></button>
             </div>
             <div className='row'>
@@ -226,8 +226,8 @@ const Profile1 = () => {
             <div className='row'>
                 <div className='col-7 box_p_7'>
 
-                    {token ? Posts2 ? postsList.map((props) => <Posts props={props} />) : null : "לא מחובר"}
-                    {token ? Frinds2 ? frindList.map((props) => <Frinds props={props} frinds1={frinds1} />) : null : "לא מחובר"}
+                    {token ? Posts2 ? postsList.map((props) => <Posts props={props} />) : null : <h2>משתמש לא מחובר</h2>}
+                    {token ? Frinds2 ? frindList.map((props) => <Frinds props={props} frinds1={frinds1} />) : null : null}
                     {token ? Photos2 ? <Photos /> : null : null}
 
 

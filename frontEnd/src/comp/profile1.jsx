@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode'
 import { useState, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone';
 import rootUrl from '../config/urlConfig'
-
+import "../../public/backgraond.jpeg"
 
 
 import "../Css_for_comp/profile1.css"
@@ -188,7 +188,7 @@ const Profile1 = () => {
     return (
         <div className='container'>
             <div className='box_p_1'>
-                <img className='box_img' src='../../public/backgraond.jpeg' />
+                <img className='box_img' src='"../../public/backgraond.jpeg"' />
                 <button>עריכת תמונת רקיע <FaCamera /></button>
             </div>
             <div className='row'>

@@ -22,7 +22,7 @@
     border: solid 1px black;
     border-radius: 10px;
     /* background-image: url("backgraond.jpeg"); */
-    background-image: url("../../public/background.jpeg");
+    background-image: url("../../public/backgraond.jpeg");
 }
 .box_f2{
     position: relative;

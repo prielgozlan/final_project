@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode'
 import { Link } from "react-router-dom"
 import WritePost from './WritePost';
 import rootUrl from '../config/urlConfig'
-
+// import "../../public/background.jpeg"
 const Feed = () => {
   const token = localStorage.getItem('token')
   const [userName, setuserName] = useState("שם משתמש")

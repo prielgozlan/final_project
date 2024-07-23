@@ -3,7 +3,7 @@
     border: solid 1px black;
     border-radius: 10px;
     text-align:right;
-    background-image: url("backgraond.jpeg");
+    background-image: url("../../public/backgraond.jpeg");
     button{
         margin: 25px;
         color: white;

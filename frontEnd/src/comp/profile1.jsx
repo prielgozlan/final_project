@@ -17,6 +17,7 @@ import Photos from './Photos';
 const Profile1 = () => {
 
     const token = localStorage.getItem('token')
+    const [istoken, setistoken] = useState(token)
 
     const [userName, setuserName] = useState("")
     const [userCity, setuserCity] = useState("")
@@ -204,10 +205,11 @@ const Profile1 = () => {
                 </div>
                 <div className='col-2 box_p_4'>
                     {/* <button>עריכת פרופיל <MdOutlineSettings/></button> */}
+                    {istoken?
                     <div {...getRootProps({ className: 'dropzone1' })}>
                         <button {...getInputProps()}></button>
                         עריכת פרופיל <MdOutlineSettings />
-                    </div>
+                    </div>:null}
                 </div>
             </div>
             <div className='row'>
